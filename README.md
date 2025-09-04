@@ -127,26 +127,26 @@ or
 
 /timestamps_data/Handmade Hero Day DDD - TITLE (1080p_30fps_H264-128kbit_AAC).htm
 
-5) Example: Day 051 files
+## 5) Example: Day 051 files
 
-Video
+    Video
 
-/video_data/Handmade Hero Day 051 - Separating Entities By Update Frequency (1080p_30fps_H264-128kbit_AAC).mp4
+    /video_data/Handmade Hero Day 051 - Separating Entities By Update Frequency (1080p_30fps_H264-128kbit_AAC).mp4
 
-Timestamps
+    Timestamps
 
-/timestamps_data/Handmade Hero Day 051 - Separating Entities By Update Frequency (1080p_30fps_H264-128kbit_AAC).html
+    /timestamps_data/Handmade Hero Day 051 - Separating Entities By Update Frequency (1080p_30fps_H264-128kbit_AAC).html
 
 
 
-6) Tips & troubleshooting
+## 6) Tips & troubleshooting
 
-    Video doesn’t load → The MP4 filename in /video_data does not exactly match the expected base name. Check title/spaces/punctuation/case.
+Video doesn’t load → The MP4 filename in /video_data does not exactly match the expected base name. Check title/spaces/punctuation/case.
 
-    Chapters panel is empty → The timestamps file is missing or misnamed in /timestamps_data, or extension mismatch (.html vs .htm).
+Chapters panel is empty → The timestamps file is missing or misnamed in /timestamps_data, or extension mismatch (.html vs .htm).
 
-    Running from file:// usually works. If your browser is restrictive, ¯\\\_(ツ)_/¯.
+Running from file:// usually works. If your browser is restrictive, ¯\\\_(ツ)_/¯.
 
-    The player remembers time per episode and a global volume using localStorage. Clearing site data resets these.
+The player remembers time per episode and a global volume using localStorage. Clearing site data resets these.
 
-    The index marks episodes as visited (✓) using localStorage. If it doesn’t update instantly, refresh the index page.
+The index marks episodes as visited (✓) using localStorage. If it doesn’t update instantly, refresh the index page.
