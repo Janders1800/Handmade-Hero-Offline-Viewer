@@ -930,6 +930,20 @@
                         "*",
                     );
                 }
+                // Restore per-episode time reliably after we change video src
+                function attachRestoreForNextLoad() {
+                    // If metadata is already present, restore right away
+                    if (video.readyState >= 1 /* HAVE_METADATA */) {
+                        restoreState();
+                        return;
+                    }
+                    // Otherwise, run once when metadata lands
+                    const onMeta = () => {
+                        restoreState();
+                        video.removeEventListener("loadedmetadata", onMeta);
+                    };
+                    video.addEventListener("loadedmetadata", onMeta);
+                }
 
                 window.addEventListener("message", (ev) => {
                     const msg = ev.data;
@@ -950,6 +964,9 @@
                             video.load();
 
                             loadTimestampsForBase(base);
+                            // Always (re)attach restore for this new load,
+                            // or restore immediately if metadata is already here.
+                            attachRestoreForNextLoad();
                         }
                     }
 
