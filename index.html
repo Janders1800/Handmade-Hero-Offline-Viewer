@@ -60,7 +60,7 @@
                 border: 1px solid rgba(59, 130, 246, 0.35);
                 background: var(--panel);
                 color: var(--ink);
-                border-radius: 12px;
+                /*border-radius: 12px;*/
                 padding: 12px 14px;
                 text-align: left;
                 cursor: pointer;
@@ -91,7 +91,7 @@
             .search {
                 width: 100%;
                 padding: 10px 12px;
-                border-radius: 12px;
+                /*border-radius: 12px;*/
                 border: 1px solid rgba(59, 130, 246, 0.35);
                 background: #0b0b0e;
                 color: var(--ink);
@@ -294,95 +294,1290 @@
                 },
                 { "id": 60, "title": "Day 060: Adding Hitpoints" },
                 { "id": 61, "title": "Day 061: Adding a Simple Attack" },
+                { "id": 62, "title": "Day 062: Basic Moving Projectiles" },
+                { "id": 63, "title": "Day 063: Simulation Regions" },
                 {
-                    "id": 558,
-                    "title": "Day 558: Assigning Lighting Probe Slots"
+                    "id": 64,
+                    "title": "Day 064: Mapping Entity Indexes to Pointers"
                 },
                 {
-                    "id": 559,
-                    "title": "Day 559: Experimenting with Fragment Light Sampling"
+                    "id": 65,
+                    "title": "Day 065: Finishing the Simulation Region Change"
                 },
                 {
-                    "id": 560,
-                    "title": "Day 560: Querying Irradiance Directly from Voxels"
+                    "id": 66,
+                    "title": "Day 066: Adding Support for Non-spatial Entities"
+                },
+                { "id": 67, "title": "Day 067: Making Updates Conditional" },
+                {
+                    "id": 68,
+                    "title": "Day 068: Exact Enforcement of Maximum Movement Distances"
+                },
+                { "id": 69, "title": "Day 069: Pairwise Collision Rules" },
+                { "id": 70, "title": "Day 070: Exploration To-do List" },
+                {
+                    "id": 71,
+                    "title": "Day 071: Converting to Full 3D Positioning"
+                },
+                { "id": 72, "title": "Day 072: Proper 3D Inclusion Tests" },
+                {
+                    "id": 73,
+                    "title": "Day 073: Temporarily Overlapping Entities"
                 },
                 {
-                    "id": 561,
-                    "title": "Day 561: Sampling Light Voxels with a Reflection Vector"
-                },
-                { "id": 562, "title": "Day 562: Testing Voxel Light Sampling" },
-                {
-                    "id": 563,
-                    "title": "Day 563: Using the Light Probe Spatial Index"
+                    "id": 74,
+                    "title": "Day 074: Moving Entities Up and Down Stairwells"
                 },
                 {
-                    "id": 564,
-                    "title": "Day 564: Improving Trilinear Sampling Results"
+                    "id": 75,
+                    "title": "Day 075: Conditional Movement Based on Step Heights"
                 },
                 {
-                    "id": 565,
-                    "title": "Day 565: Reconstructing Multiple Lights"
+                    "id": 76,
+                    "title": "Day 076: Entity Heights and Collision Detection"
+                },
+                { "id": 77, "title": "Day 077: Entity Ground Points" },
+                {
+                    "id": 78,
+                    "title": "Day 078: Multiple Collision Volumes Per Entity"
+                },
+                { "id": 79, "title": "Day 079: Defining the Ground" },
+                {
+                    "id": 80,
+                    "title": "Day 080: Handling Traversables in the Collision Loop"
                 },
                 {
-                    "id": 566,
-                    "title": "Day 566: Moving to a Voxels-only Lighting Approach"
+                    "id": 81,
+                    "title": "Day 081: Creating Ground with Overlapping Bitmaps"
+                },
+                { "id": 82, "title": "Day 082: Caching Composited Bitmaps" },
+                { "id": 83, "title": "Day 083: Premultiplied Alpha" },
+                { "id": 84, "title": "Day 084: Scrolling Ground Buffer" },
+                { "id": 85, "title": "Day 085: Transient Ground Buffers" },
+                {
+                    "id": 86,
+                    "title": "Day 086: Aligning Ground Buffers to World Chunks"
+                },
+                { "id": 87, "title": "Day 087: Seamless Ground Textures" },
+                { "id": 88, "title": "Day 088: Push Buffer Rendering" },
+                {
+                    "id": 89,
+                    "title": "Day 089: Renderer Push Buffer Entry Types"
+                },
+                { "id": 90, "title": "Day 090: Bases Part I" },
+                { "id": 91, "title": "Day 091: Bases Part II" },
+                {
+                    "id": 92,
+                    "title": "Day 092: Filling Rotated and Scaled Rectangles"
+                },
+                { "id": 93, "title": "Day 093: Textured Quadrilaterals" },
+                {
+                    "id": 94,
+                    "title": "Day 094: Converting sRGB to Light-linear Space"
                 },
                 {
-                    "id": 567,
-                    "title": "Day 567: Large to Small Voxel Transfer"
+                    "id": 95,
+                    "title": "Day 095: Gamma-correct Premultiplied Alpha"
                 },
-                { "id": 568, "title": "Day 568: Debugging the Raycaster" },
+                { "id": 96, "title": "Day 096: Introduction to Lighting" },
                 {
-                    "id": 569,
-                    "title": "Day 569: Raycasting from Light Probe Locations"
+                    "id": 97,
+                    "title": "Day 097: Adding Normal Maps to the Pipeline"
                 },
+                { "id": 98, "title": "Day 098: Normal Map Code Cleanup" },
+                { "id": 99, "title": "Day 099: Test Enviroment Maps" },
+                { "id": 100, "title": "Day 100: Reflection Vectors" },
                 {
-                    "id": 570,
-                    "title": "Day 570: Distinguishing Between Lights and Occluders"
-                },
-                { "id": 571, "title": "Day 571: Adding a Light Hierarchy" },
-                { "id": 572, "title": "Day 572: Scrolling the Lighting Voxel" },
-                { "id": 573, "title": "Day 573: Wiring Up Light Transport" },
-                {
-                    "id": 574,
-                    "title": "Day 574: Experimenting with Voxel Filters"
-                },
-                { "id": 575, "title": "Day 575: Generalizing Code Reloading" },
-                { "id": 576, "title": "Day 576: Octahedral Encoding" },
-                {
-                    "id": 577,
-                    "title": "Day 577: Adding Octahedral Light Atlases"
-                },
-                { "id": 578, "title": "Day 578: Sampling Octahedral Atlases" },
-                { "id": 579, "title": "Day 579: Debugging Octahedral Shading" },
-                {
-                    "id": 580,
-                    "title": "Day 580: Investigating Octahedral Interpolation"
+                    "id": 101,
+                    "title": "Day 101: The Inverse and the Transpose"
                 },
                 {
-                    "id": 581,
-                    "title": "Day 581: Preparing for Octahedral Indirect Lighting"
+                    "id": 102,
+                    "title": "Day 102: Transforming Normals Properly"
                 },
                 {
-                    "id": 582,
-                    "title": "Day 582: Converting Specular Maps to Diffuse"
+                    "id": 103,
+                    "title": "Day 103: Card-like Normal Map Reflections"
                 },
                 {
-                    "id": 583,
-                    "title": "Day 583: Streamlining the New Lighting Pipeline"
+                    "id": 104,
+                    "title": "Day 104: Switching to Y-is-up Render Targets"
+                },
+                { "id": 105, "title": "Day 105: Cleaning Up the Renderer API" },
+                { "id": 106, "title": "Day 106: World Scaling" },
+                { "id": 107, "title": "Day 107: Fading Z Layers" },
+                { "id": 108, "title": "Day 108: Perspective Projection" },
+                {
+                    "id": 109,
+                    "title": "Day 109: Resolution-Independent Rendering"
                 },
                 {
-                    "id": 584,
-                    "title": "Day 584: Enabling Infinite-Bounce Lighting"
+                    "id": 110,
+                    "title": "Day 110: Unprojecting Screen Boundaries"
                 },
                 {
-                    "id": 585,
-                    "title": "Day 585: Centralized Light Atlas Handling"
+                    "id": 111,
+                    "title": "Day 111: Resolution-Independent Ground Chunks"
                 },
                 {
-                    "id": 586,
-                    "title": "Day 586: Finishing Indirect Diffuse Sampling"
+                    "id": 112,
+                    "title": "Day 112: A Mental Model of CPU Performance"
                 },
+                { "id": 113, "title": "Day 113: Simple Performance Counters" },
+                {
+                    "id": 114,
+                    "title": "Day 114: Preparing a Function for Optimization"
+                },
+                { "id": 115, "title": "Day 115: SIMD Basics" },
+                {
+                    "id": 116,
+                    "title": "Day 116: Converting Math Operations to SIMD"
+                },
+                {
+                    "id": 117,
+                    "title": "Day 117: Packing Pixels for the Framebuffer"
+                },
+                { "id": 118, "title": "Day 118: Wide Unpacking and Masking" },
+                { "id": 119, "title": "Day 119: Counting Intrinsics" },
+                {
+                    "id": 120,
+                    "title": "Day 120: Measuring Port Usage with IACA"
+                },
+                {
+                    "id": 121,
+                    "title": "Day 121: Rendering in Tiles (Marathon)"
+                },
+                {
+                    "id": 122,
+                    "title": "Day 122: Introduction to Multithreading"
+                },
+                { "id": 123, "title": "Day 123: Interlocked Operations" },
+                {
+                    "id": 124,
+                    "title": "Day 124: Memory Barriers and Semaphores"
+                },
+                { "id": 125, "title": "Day 125: Abstracting the Work Queue" },
+                { "id": 126, "title": "Day 126: Circular FIFO Work Queue" },
+                { "id": 127, "title": "Day 127: Aligning Rendering Memory" },
+                { "id": 128, "title": "Day 128: Push-time Transforms" },
+                {
+                    "id": 129,
+                    "title": "Day 129: Adding Orthographic Projection"
+                },
+                { "id": 130, "title": "Day 130: Seamless Bilinear Tiling" },
+                {
+                    "id": 131,
+                    "title": "Day 131: Asynchronous Ground Chunk Composition"
+                },
+                { "id": 132, "title": "Day 132: Asset Streaming" },
+                {
+                    "id": 133,
+                    "title": "Day 133: Preliminary Asset Structuring"
+                },
+                { "id": 134, "title": "Day 134: Mapping Assets to Bitmaps" },
+                { "id": 135, "title": "Day 135: Typed Asset Arrays" },
+                { "id": 136, "title": "Day 136: Tag-based Asset Retrieval" },
+                { "id": 137, "title": "Day 137: Matching Periodic Tags" },
+                { "id": 138, "title": "Day 138: Loading WAV Files" },
+                { "id": 139, "title": "Day 139: Introduction to Sound Mixing" },
+                { "id": 140, "title": "Day 140: Implemented a Sound Mixer" },
+                {
+                    "id": 141,
+                    "title": "Day 141: Streaming Large Audio in Chunks"
+                },
+                {
+                    "id": 142,
+                    "title": "Day 142: Per-sample Volume Interpolation"
+                },
+                { "id": 143, "title": "Day 143: Pitch Shifting in the Mixer" },
+                { "id": 144, "title": "Day 144: SSE Mixer Pre and Post Loops" },
+                { "id": 145, "title": "Day 145: SSE Mixer Main Loop" },
+                {
+                    "id": 146,
+                    "title": "Day 146: Accumulation vs. Explicit Calculation"
+                },
+                { "id": 147, "title": "Day 147: Defining the Asset File" },
+                {
+                    "id": 148,
+                    "title": "Day 148: Writing the Asset File Header"
+                },
+                {
+                    "id": 149,
+                    "title": "Day 149: Writing Assets to the Asset File"
+                },
+                {
+                    "id": 150,
+                    "title": "Day 150: Loading Assets from the Asset File"
+                },
+                { "id": 151, "title": "Day 151: New Platform File API" },
+                {
+                    "id": 152,
+                    "title": "Day 152: New Win32 File API Implementation"
+                },
+                { "id": 153, "title": "Day 153: Merging Multiple Asset Files" },
+                {
+                    "id": 154,
+                    "title": "Day 154: Finding Assets Files with Win32"
+                },
+                {
+                    "id": 155,
+                    "title": "Day 155: Introduction to Particle Systems"
+                },
+                {
+                    "id": 156,
+                    "title": "Day 156: Lagrangian vs. Eulerian Simulation"
+                },
+                {
+                    "id": 157,
+                    "title": "Day 157: Introduction to General Purpose Allocation"
+                },
+                { "id": 158, "title": "Day 158: Tracking Asset Usage" },
+                {
+                    "id": 159,
+                    "title": "Day 159: Cleaning Up the Loaded Asset Infrastructure"
+                },
+                {
+                    "id": 160,
+                    "title": "Day 160: Basic General Purpose Allocation"
+                },
+                {
+                    "id": 161,
+                    "title": "Day 161: Finishing the General Purpose Allocator"
+                },
+                { "id": 162, "title": "Day 162: Introduction to Fonts" },
+                {
+                    "id": 163,
+                    "title": "Day 163: Asset Processing with STB TrueType"
+                },
+                {
+                    "id": 164,
+                    "title": "Day 164: Asset Processing with Windows Fonts"
+                },
+                {
+                    "id": 165,
+                    "title": "Day 165: Fixing an Asset System Thread Bug"
+                },
+                {
+                    "id": 166,
+                    "title": "Day 166: Adding Locks to the Asset Operations"
+                },
+                {
+                    "id": 167,
+                    "title": "Day 167: Finishing Win32 Font Glyph Extraction"
+                },
+                { "id": 168, "title": "Day 168: Rendering Lines of Text" },
+                { "id": 169, "title": "Day 169: Aligning Text to a Baseline" },
+                { "id": 170, "title": "Day 170: Defining Font Metadata" },
+                {
+                    "id": 171,
+                    "title": "Day 171: Adding Font Metadata to the Asset Builder"
+                },
+                {
+                    "id": 172,
+                    "title": "Day 172: Extracting Kerning Tables from Windows"
+                },
+                { "id": 173, "title": "Day 173: Precise Font Alignment" },
+                {
+                    "id": 174,
+                    "title": "Day 174: Adding Sparse Unicode Support"
+                },
+                {
+                    "id": 175,
+                    "title": "Day 175: Finishing Sparse Unicode Support"
+                },
+                {
+                    "id": 176,
+                    "title": "Day 176: Introduction to Debug Infrastructure"
+                },
+                {
+                    "id": 177,
+                    "title": "Day 177: Automatic Performance Counters"
+                },
+                {
+                    "id": 178,
+                    "title": "Day 178: Thread-safe Performance Counters"
+                },
+                {
+                    "id": 179,
+                    "title": "Day 179: Tracking Debug Information Over Time"
+                },
+                { "id": 180, "title": "Day 180: Adding Debug Graphs" },
+                {
+                    "id": 181,
+                    "title": "Day 181: Log-based Performance Counters"
+                },
+                { "id": 182, "title": "Day 182: Fast Thread ID Retrieval" },
+                { "id": 183, "title": "Day 183: Platform Layer Debug Events" },
+                { "id": 184, "title": "Day 184: Collating Debug Events" },
+                {
+                    "id": 185,
+                    "title": "Day 185: Finishing Basic Debug Collation"
+                },
+                {
+                    "id": 186,
+                    "title": "Day 186: Starting to Debug Event Recording"
+                },
+                {
+                    "id": 187,
+                    "title": "Day 187: Fixing an Event Recording Bug"
+                },
+                {
+                    "id": 188,
+                    "title": "Day 188: Adding Hover to the Debug Graphs"
+                },
+                {
+                    "id": 189,
+                    "title": "Day 189: Incremental Debug Frame Processing"
+                },
+                { "id": 190, "title": "Day 190: Cleaning Up Debug Globals" },
+                { "id": 191, "title": "Day 191: Implementing a Radial Menu" },
+                {
+                    "id": 192,
+                    "title": "Day 192: Implementing Self-Recompilation"
+                },
+                {
+                    "id": 193,
+                    "title": "Day 193: Run-time Setting of Compile-time Variables"
+                },
+                {
+                    "id": 194,
+                    "title": "Day 194: Organizing Debug Variables into a Hierarchy"
+                },
+                {
+                    "id": 195,
+                    "title": "Day 195: Implementing an Interactive Tree View"
+                },
+                {
+                    "id": 196,
+                    "title": "Day 196: Introduction to UI Interactions"
+                },
+                {
+                    "id": 197,
+                    "title": "Day 197: Integrating Multiple Debug Views"
+                },
+                {
+                    "id": 198,
+                    "title": "Day 198: Run-time Editing of Debug Hierarchies"
+                },
+                { "id": 199, "title": "Day 199: Reusing Debug Interactions" },
+                { "id": 200, "title": "Day 200: Debug Element Layout" },
+                { "id": 201, "title": "Day 201: Isolating the Debug Code" },
+                {
+                    "id": 202,
+                    "title": "Day 202: Multiply Appearing Debug Values"
+                },
+                { "id": 203, "title": "Day 203: Debug UI State Caching" },
+                {
+                    "id": 204,
+                    "title": "Day 204: Unprojecting the Mouse Cursor"
+                },
+                {
+                    "id": 205,
+                    "title": "Day 205: Picking Entities with the Mouse"
+                },
+                { "id": 206, "title": "Day 206: Implementing Introspection" },
+                { "id": 207, "title": "Day 207: Using Introspection Data" },
+                {
+                    "id": 208,
+                    "title": "Day 208: Adding Data Blocks to the Debug Log"
+                },
+                {
+                    "id": 209,
+                    "title": "Day 209: Displaying Buffered Debug Data"
+                },
+                {
+                    "id": 210,
+                    "title": "Day 210: Consolidating Debug Data Storage"
+                },
+                {
+                    "id": 211,
+                    "title": "Day 211: Removing Records and Translation Units from the Debug Code"
+                },
+                {
+                    "id": 212,
+                    "title": "Day 212: Integrating Debug UI into Game Code"
+                },
+                {
+                    "id": 213,
+                    "title": "Day 213: Turning Debug Switches into Events"
+                },
+                {
+                    "id": 214,
+                    "title": "Day 214: Collating Permanent Debug Values"
+                },
+                {
+                    "id": 215,
+                    "title": "Day 215: Cleaning Up Debug Event Collation"
+                },
+                { "id": 216, "title": "Day 216: On-demand Deallocation" },
+                {
+                    "id": 217,
+                    "title": "Day 217: Per-element Debug Event Storage"
+                },
+                { "id": 218, "title": "Day 218: Hashing Debug Elements" },
+                {
+                    "id": 219,
+                    "title": "Day 219: Automatically Constructed Debug Hierarchies"
+                },
+                {
+                    "id": 220,
+                    "title": "Day 220: Displaying Data Blocks in the Hierarchy"
+                },
+                {
+                    "id": 221,
+                    "title": "Day 221: Implementing Multi-layer Cutscenes"
+                },
+                { "id": 222, "title": "Day 222: Laying Out Cutscenes" },
+                { "id": 223, "title": "Day 223: Playing Multiple Cutscenes" },
+                { "id": 224, "title": "Day 224: Prefetching Cutscene Layers" },
+                {
+                    "id": 225,
+                    "title": "Day 225: Fading In and Out from the Windows Desktop"
+                },
+                {
+                    "id": 226,
+                    "title": "Day 226: Handling Multiple Metagame Modes"
+                },
+                {
+                    "id": 227,
+                    "title": "Day 227: Switching Between Metagame Modes"
+                },
+                {
+                    "id": 228,
+                    "title": "Day 228: Waiting for Dependent Tasks on Metagame Mode Changes"
+                },
+                { "id": 229, "title": "Day 229: Sorting Render Elements" },
+                { "id": 230, "title": "Day 230: Refining Renderer Sort Keys" },
+                { "id": 231, "title": "Day 231: Order Notation" },
+                {
+                    "id": 232,
+                    "title": "Day 232: Examples of Sorting Algorithms"
+                },
+                { "id": 233, "title": "Day 233: Can We Merge Sort In Place?" },
+                { "id": 234, "title": "Day 234: Implementing Radix Sort" },
+                {
+                    "id": 235,
+                    "title": "Day 235: Initializing OpenGL on Windows"
+                },
+                { "id": 236, "title": "Day 236: GPU Conceptual Overview" },
+                {
+                    "id": 237,
+                    "title": "Day 237: Displaying an Image with OpenGL"
+                },
+                {
+                    "id": 238,
+                    "title": "Day 238: Making OpenGL Use Our Screen Coordinates"
+                },
+                {
+                    "id": 239,
+                    "title": "Day 239: Rendering the Game Through OpenGL"
+                },
+                {
+                    "id": 240,
+                    "title": "Day 240: Moving the Renderer into a Third Tier"
+                },
+                {
+                    "id": 241,
+                    "title": "Day 241: OpenGL VSync and sRGB Extensions"
+                },
+                { "id": 242, "title": "Day 242: OpenGL Context Escalation" },
+                {
+                    "id": 243,
+                    "title": "Day 243: Asynchronous Texture Downloads"
+                },
+                {
+                    "id": 244,
+                    "title": "Day 244: Finishing Asynchronous Texture Downloads"
+                },
+                {
+                    "id": 245,
+                    "title": "Day 245: Using wglChoosePixelFormatARB"
+                },
+                {
+                    "id": 246,
+                    "title": "Day 246: Moving Worker Context Creation to the Main Thread"
+                },
+                { "id": 247, "title": "Day 247: Simplifying Debug Values" },
+                {
+                    "id": 248,
+                    "title": "Day 248: Cleaning Up Data Block Display"
+                },
+                { "id": 249, "title": "Day 249: Cleaning Up Debug Macros" },
+                { "id": 250, "title": "Day 250: Cleaning Up Debug GUIDs" },
+                {
+                    "id": 251,
+                    "title": "Day 251: Finishing the Debug Hierarchy"
+                },
+                { "id": 252, "title": "Day 252: Allowing Debug Value Edits" },
+                { "id": 253, "title": "Day 253: Reenabling More Debug UI" },
+                { "id": 254, "title": "Day 254: Reenabling Profiling" },
+                { "id": 255, "title": "Day 255: Building a Profile Tree" },
+                {
+                    "id": 256,
+                    "title": "Day 256: XBox Controller Stalls and Fixing GL Blit Gamma"
+                },
+                {
+                    "id": 257,
+                    "title": "Day 257: Cleaning Up Some Win32 Issues"
+                },
+                {
+                    "id": 258,
+                    "title": "Day 258: Fixing Profiling Across Code Reloads"
+                },
+                {
+                    "id": 259,
+                    "title": "Day 259: OpenGL and Software Renderer Cleanup"
+                },
+                {
+                    "id": 260,
+                    "title": "Day 260: Implementing Drill-down in the Profiler"
+                },
+                {
+                    "id": 261,
+                    "title": "Day 261: Changing to Static Frame Arrays"
+                },
+                {
+                    "id": 262,
+                    "title": "Day 262: Drawing Multi-frame Profile Graphs"
+                },
+                { "id": 263, "title": "Day 263: Adding a Debug Frame Slider" },
+                {
+                    "id": 264,
+                    "title": "Day 264: Adding Buttons to the Profiler"
+                },
+                {
+                    "id": 265,
+                    "title": "Day 265: Cleaning Up the UI Layout Code"
+                },
+                {
+                    "id": 266,
+                    "title": "Day 266: Adding a Top Clocks Profile View"
+                },
+                {
+                    "id": 267,
+                    "title": "Day 267: Adding Per-Element Clipping Rectangles"
+                },
+                {
+                    "id": 268,
+                    "title": "Day 268: Consolidating Debug Links and Groups"
+                },
+                { "id": 269, "title": "Day 269: Cleaning Up Menu Drawing" },
+                { "id": 270, "title": "Day 270: Making Traversable Points" },
+                { "id": 271, "title": "Day 271: Hybrid Tile-based Movement" },
+                {
+                    "id": 272,
+                    "title": "Day 272: Explicit Movement Transitions"
+                },
+                { "id": 273, "title": "Day 273: Animation Overview" },
+                {
+                    "id": 274,
+                    "title": "Day 274: Dynamic Animation with Springs"
+                },
+                {
+                    "id": 275,
+                    "title": "Day 275: Passing Rotation and Shear to the Renderer"
+                },
+                { "id": 276, "title": "Day 276: Tuning the Body Animation" },
+                { "id": 277, "title": "Day 277: The Sparse Entity System" },
+                {
+                    "id": 278,
+                    "title": "Day 278: Moving Entity Storage into World Chunks"
+                },
+                {
+                    "id": 279,
+                    "title": "Day 279: Finishing World Chunk Entity Storage"
+                },
+                {
+                    "id": 280,
+                    "title": "Day 280: Cleaned Up Streaming Entity Simulation"
+                },
+                {
+                    "id": 281,
+                    "title": "Day 281: Animating the Camera Between Rooms"
+                },
+                { "id": 282, "title": "Day 282: Z Movement and Camera Motion" },
+                {
+                    "id": 283,
+                    "title": "Day 283: Making Standing-on a More Rigorous Concept"
+                },
+                {
+                    "id": 284,
+                    "title": "Day 284: Reorganizing the Head and Body Code"
+                },
+                {
+                    "id": 285,
+                    "title": "Day 285: Transactional Occupation of Traversables"
+                },
+                {
+                    "id": 286,
+                    "title": "Day 286: Starting to Decouple Entity Behavior"
+                },
+                { "id": 287, "title": "Day 287: Adding Brains" },
+                { "id": 288, "title": "Day 288: Finishing Brains" },
+                {
+                    "id": 289,
+                    "title": "Day 289: Decoupling Visuals from Entity Types"
+                },
+                {
+                    "id": 290,
+                    "title": "Day 290: Finishing Separated Rendering"
+                },
+                {
+                    "id": 291,
+                    "title": "Day 291: Hopping Monstar and Occupying Trees"
+                },
+                { "id": 292, "title": "Day 292: Implementing Snakes" },
+                { "id": 293, "title": "Day 293: Moving Familiars" },
+                { "id": 294, "title": "Day 294: Adding the Glove" },
+                {
+                    "id": 295,
+                    "title": "Day 295: Stacking Rooms for Z Layer Debugging"
+                },
+                { "id": 296, "title": "Day 296: Fog and Alpha for Layers" },
+                {
+                    "id": 297,
+                    "title": "Day 297: Separating Entities into Z Layers"
+                },
+                { "id": 298, "title": "Day 298: Improving Sort Keys Part 1" },
+                { "id": 299, "title": "Day 299: Improving Sort Keys Part 2" },
+                {
+                    "id": 300,
+                    "title": "Day 300: Changing from Sort Keys to Sort Rules"
+                },
+                { "id": 301, "title": "Day 301: Sorting with Sprite Bounds" },
+                { "id": 302, "title": "Day 302: Confirming No Total Ordering" },
+                {
+                    "id": 303,
+                    "title": "Day 303: Trying Separate Y and Z Sorts"
+                },
+                {
+                    "id": 304,
+                    "title": "Day 304: Building and Traversing Graphs"
+                },
+                {
+                    "id": 305,
+                    "title": "Day 305: Using Memory Arenas in the Platform Layer"
+                },
+                { "id": 306, "title": "Day 306: Debugging Graph-based Sort" },
+                { "id": 307, "title": "Day 307: Visualizing Sort Groups" },
+                { "id": 308, "title": "Day 308: Debugging the Cycle Check" },
+                {
+                    "id": 309,
+                    "title": "Day 309: Grid Partitioning for Overlap Testing"
+                },
+                {
+                    "id": 310,
+                    "title": "Day 310: Finishing Sort Acceleration via Gridding"
+                },
+                { "id": 311, "title": "Day 311: Allowing Manual Sorting" },
+                { "id": 312, "title": "Day 312: Cross-entity Manual Sorting" },
+                {
+                    "id": 313,
+                    "title": "Day 313: Returning to Work on Z Layers"
+                },
+                { "id": 314, "title": "Day 314: Breaking Sprites into Layers" },
+                { "id": 315, "title": "Day 315: Un-reversing Sort Key Order" },
+                {
+                    "id": 316,
+                    "title": "Day 316: Multiple Software Render Targets"
+                },
+                {
+                    "id": 317,
+                    "title": "Day 317: Alpha Blending Multiple Render Targets"
+                },
+                {
+                    "id": 318,
+                    "title": "Day 318: Optimizing Render Target Blends and Clears"
+                },
+                {
+                    "id": 319,
+                    "title": "Day 319: Inverse and Transpose Matrices"
+                },
+                {
+                    "id": 320,
+                    "title": "Day 320: Inverting a 2x2 Matrix by Hand"
+                },
+                {
+                    "id": 321,
+                    "title": "Day 321: Multiple OpenGL Render Targets"
+                },
+                {
+                    "id": 322,
+                    "title": "Day 322: Handling Multiple Display Aspect Ratios"
+                },
+                { "id": 323, "title": "Day 323: Fixing Miscellaneous Bugs" },
+                {
+                    "id": 324,
+                    "title": "Day 324: Moving Away from Multiple OpenGL Contexts"
+                },
+                { "id": 325, "title": "Day 325: Ticket Mutexes" },
+                { "id": 326, "title": "Day 326: Vararg Functions" },
+                {
+                    "id": 327,
+                    "title": "Day 327: Parsing Printf Format Strings"
+                },
+                {
+                    "id": 328,
+                    "title": "Day 328: Integer and String Support in Printf"
+                },
+                { "id": 329, "title": "Day 329: Printing Out Floats Poorly" },
+                {
+                    "id": 330,
+                    "title": "Day 330: Fixings Bugs from the Issue List"
+                },
+                { "id": 331, "title": "Day 331: Activating Entities by Brain" },
+                {
+                    "id": 332,
+                    "title": "Day 332: Disabling Sort for Debug Overlays"
+                },
+                {
+                    "id": 333,
+                    "title": "Day 333: Floor-relative Perspective Transforms"
+                },
+                { "id": 334, "title": "Day 334: Adding Boost Pads" },
+                {
+                    "id": 335,
+                    "title": "Day 335: Moving Entities on Boost Squares"
+                },
+                {
+                    "id": 336,
+                    "title": "Day 336: Adding a Particle System Cache"
+                },
+                {
+                    "id": 337,
+                    "title": "Day 337: Convenient SIMD for Particles"
+                },
+                { "id": 338, "title": "Day 338: Simulation-space Particles" },
+                {
+                    "id": 339,
+                    "title": "Day 339: Debugging Particle Camera Offset Motion"
+                },
+                {
+                    "id": 340,
+                    "title": "Day 340: Cleaning Up World / Sim-Region Interactions"
+                },
+                { "id": 341, "title": "Day 341: Dynamically Growing Arenas" },
+                {
+                    "id": 342,
+                    "title": "Day 342: Supporting Temporary Memory in Dynamic Arenas"
+                },
+                {
+                    "id": 343,
+                    "title": "Day 343: Saving and Restoring Dynamically Allocated Memory Pages"
+                },
+                { "id": 344, "title": "Day 344: Selective Memory Restoration" },
+                {
+                    "id": 345,
+                    "title": "Day 345: Protecting Memory Pages for Underflow Detection"
+                },
+                {
+                    "id": 346,
+                    "title": "Day 346: Consolidating Memory Block Headers"
+                },
+                {
+                    "id": 347,
+                    "title": "Day 347: Debugging Win32 Memory List Corruption"
+                },
+                {
+                    "id": 348,
+                    "title": "Day 348: Debugging Cutscene Z and Traversable Creation"
+                },
+                { "id": 349, "title": "Day 349: Running Multiple Sim Regions" },
+                {
+                    "id": 350,
+                    "title": "Day 350: Multithreaded World Simulation"
+                },
+                {
+                    "id": 351,
+                    "title": "Day 351: Optimizing Multithreaded Simulation Regions"
+                },
+                {
+                    "id": 352,
+                    "title": "Day 352: Isolating the Camera Update Code"
+                },
+                { "id": 353, "title": "Day 353: Simple RLE Compression" },
+                { "id": 354, "title": "Day 354: Simple LZ Compression" },
+                {
+                    "id": 355,
+                    "title": "Day 355: Clearing Out Pending GitHub Bugs"
+                },
+                {
+                    "id": 356,
+                    "title": "Day 356: Making the Debug System CLANG Compatible"
+                },
+                { "id": 357, "title": "Day 357: Room-based Camera Zoom" },
+                {
+                    "id": 358,
+                    "title": "Day 358: Introduction to Depth Buffers"
+                },
+                {
+                    "id": 359,
+                    "title": "Day 359: OpenGL Projection Matrices Revisited"
+                },
+                {
+                    "id": 360,
+                    "title": "Day 360: Moving the Perspective Divide to OpenGL"
+                },
+                {
+                    "id": 361,
+                    "title": "Day 361: Introduction to 3D Rotation Matrices"
+                },
+                {
+                    "id": 362,
+                    "title": "Day 362: Matrix Multiplication and Transform Order"
+                },
+                {
+                    "id": 363,
+                    "title": "Day 363: Making an Orbiting Debug Camera"
+                },
+                {
+                    "id": 364,
+                    "title": "Day 364: Enabling the OpenGL Depth Buffer"
+                },
+                {
+                    "id": 365,
+                    "title": "Day 365: Adjusting Sprite Cards to Counter Projection"
+                },
+                { "id": 366, "title": "Day 366: Adding Cubes to the Renderer" },
+                {
+                    "id": 367,
+                    "title": "Day 367: Enabling OpenGL Multisampling"
+                },
+                {
+                    "id": 368,
+                    "title": "Day 368: Compiling and Linking Shaders in OpenGL"
+                },
+                {
+                    "id": 369,
+                    "title": "Day 369: Introduction to Vertex and Fragment Shaders"
+                },
+                { "id": 370, "title": "Day 370: Shader Fallback sRGB" },
+                { "id": 371, "title": "Day 371: OpenGL Vertex Arrays" },
+                {
+                    "id": 372,
+                    "title": "Day 372: Using Strictly OpenGL Core Profile"
+                },
+                {
+                    "id": 373,
+                    "title": "Day 373: Inverting the Full 3D Transform"
+                },
+                {
+                    "id": 374,
+                    "title": "Day 374: Debugging Z Transform and Bias"
+                },
+                { "id": 375, "title": "Day 375: Adding Distance-based Fog" },
+                { "id": 376, "title": "Day 376: Drawing Debug Volumes" },
+                {
+                    "id": 377,
+                    "title": "Day 377: Improving Collision Volumes and the Camera"
+                },
+                { "id": 378, "title": "Day 378: Adding More Camera Behaviors" },
+                {
+                    "id": 379,
+                    "title": "Day 379: Debug Overlay Cleanup and Render Group Performance Investigation"
+                },
+                {
+                    "id": 380,
+                    "title": "Day 380: Attempting (and Failing) to Fix the Clock"
+                },
+                { "id": 381, "title": "Day 381: Two-pass Depth Peeling" },
+                { "id": 382, "title": "Day 382: Depth Peel Compositing" },
+                { "id": 383, "title": "Day 383: Fixing Depth Peel Artifacts" },
+                {
+                    "id": 384,
+                    "title": "Day 384: Dynamically Responding to Render Settings"
+                },
+                {
+                    "id": 385,
+                    "title": "Day 385: Trying Multisampled Depth Peels"
+                },
+                {
+                    "id": 386,
+                    "title": "Day 386: Implementing a Custom Multisample Resolve"
+                },
+                {
+                    "id": 387,
+                    "title": "Day 387: Further Attempts at Multisampled Depth Peeling"
+                },
+                {
+                    "id": 388,
+                    "title": "Day 388: Successful Multisampled Depth-Peeling"
+                },
+                { "id": 389, "title": "Day 389: Adding Simple Lighting" },
+                { "id": 390, "title": "Day 390: Adding Simple Phong Lighting" },
+                { "id": 391, "title": "Day 391: Planning Better Lighting" },
+                { "id": 392, "title": "Day 392: Creating Lighting Textures" },
+                {
+                    "id": 393,
+                    "title": "Day 393: Planning Lighting from Depth Peels"
+                },
+                {
+                    "id": 394,
+                    "title": "Day 394: Basic Multigrid Lighting Upward Iteration"
+                },
+                {
+                    "id": 395,
+                    "title": "Day 395: Basic Multigrid Lighting Down Iteration"
+                },
+                {
+                    "id": 396,
+                    "title": "Day 396: Rendering Lighting Information from the Game"
+                },
+                {
+                    "id": 397,
+                    "title": "Day 397: Converting Depth Peel Data to Lighting Data"
+                },
+                {
+                    "id": 398,
+                    "title": "Day 398: Applying Lighting Back to Depth Peels"
+                },
+                {
+                    "id": 399,
+                    "title": "Day 399: Creating a CPU-side Lighting Testbed"
+                },
+                {
+                    "id": 400,
+                    "title": "Day 400: Adding an Ambient Occlusion Pass"
+                },
+                { "id": 401, "title": "Day 401: Debugging Lighting Transfer" },
+                {
+                    "id": 402,
+                    "title": "Day 402: Adding Raycasting to the Lighting"
+                },
+                {
+                    "id": 403,
+                    "title": "Day 403: Off-line Lighting and Per-vertex Reflectors"
+                },
+                {
+                    "id": 404,
+                    "title": "Day 404: Voxel-Indexed Lighting Samples"
+                },
+                {
+                    "id": 405,
+                    "title": "Day 405: Crashing the Stream with a Fragment Shader"
+                },
+                {
+                    "id": 406,
+                    "title": "Day 406: Getting a Graphics Debugger Working"
+                },
+                {
+                    "id": 407,
+                    "title": "Day 407: Starting to Debug Volume Textures"
+                },
+                {
+                    "id": 408,
+                    "title": "Day 408: Finishing Debugging Volume Textures"
+                },
+                {
+                    "id": 409,
+                    "title": "Day 409: Smoother Blending of Lighting Samples"
+                },
+                { "id": 410, "title": "Day 410: Tracking Incident Light" },
+                {
+                    "id": 411,
+                    "title": "Day 411: Switching to Rectangular Lighting Elements"
+                },
+                {
+                    "id": 412,
+                    "title": "Day 412: Debugging Voxel Interpolation"
+                },
+                { "id": 413, "title": "Day 413: Encoding Light Values" },
+                { "id": 414, "title": "Day 414: Improving Light Distribution" },
+                {
+                    "id": 415,
+                    "title": "Day 415: Per-primitive Lighting Samples"
+                },
+                {
+                    "id": 416,
+                    "title": "Day 416: Separating Lighting and Geometry Submission"
+                },
+                {
+                    "id": 417,
+                    "title": "Day 417: Adding a Debug View for Lighting Points"
+                },
+                {
+                    "id": 418,
+                    "title": "Day 418: Smoothing Light Samples Over Time"
+                },
+                { "id": 419, "title": "Day 419: Debugging Missing Lighting" },
+                {
+                    "id": 420,
+                    "title": "Day 420: Pushing Lighting Information Directly"
+                },
+                { "id": 421, "title": "Day 421: Passing Lighting as Boxes" },
+                { "id": 422, "title": "Day 422: Raycasting AABBs Directly" },
+                {
+                    "id": 423,
+                    "title": "Day 423: Modifying Lighting to Use a Spatial Hierarchy"
+                },
+                {
+                    "id": 424,
+                    "title": "Day 424: Modifying Lighting to Use a Spatial Hierarchy"
+                },
+                {
+                    "id": 425,
+                    "title": "Day 425: Entity-based Lighting Storage"
+                },
+                {
+                    "id": 426,
+                    "title": "Day 426: Debugging Lighting Persistence"
+                },
+                { "id": 427, "title": "Day 427: Debugging Lighting Flicker" },
+                {
+                    "id": 428,
+                    "title": "Day 428: Tracking Light Proportional to Photons per Second"
+                },
+                {
+                    "id": 429,
+                    "title": "Day 429: Multiresolution Light Sampling"
+                },
+                {
+                    "id": 430,
+                    "title": "Day 430: Stratifying and Multithreading the Lighting"
+                },
+                { "id": 431, "title": "Day 431: SIMD Raycasting" },
+                {
+                    "id": 432,
+                    "title": "Day 432: Finishing the Main SIMD Raycasting Loop"
+                },
+                {
+                    "id": 433,
+                    "title": "Day 433: Optimizing Ray vs. AABB Intersections"
+                },
+                {
+                    "id": 434,
+                    "title": "Day 434: Replacing the Pseudo-random Number Generator"
+                },
+                {
+                    "id": 435,
+                    "title": "Day 435: Removing the CRT from the Win32 Loader"
+                },
+                {
+                    "id": 436,
+                    "title": "Day 436: Spiral and Blue Noise Distributions on the Sphere"
+                },
+                {
+                    "id": 437,
+                    "title": "Day 437: Switching to Precomputed Hemisphere Distributions"
+                },
+                {
+                    "id": 438,
+                    "title": "Day 438: Switching to Cosine-weighted Poisson Sampling"
+                },
+                { "id": 439, "title": "Day 439: Testing Better Entropy" },
+                {
+                    "id": 440,
+                    "title": "Day 440: Introduction to Function Approximation with Andrew Bromage"
+                },
+                {
+                    "id": 441,
+                    "title": "Day 441: Never, Ever Update Your Development Tools. Ever."
+                },
+                { "id": 442, "title": "Day 442: Getting NSight Working" },
+                {
+                    "id": 443,
+                    "title": "Day 443: Updating the Player Movement Code"
+                },
+                {
+                    "id": 444,
+                    "title": "Day 444: Stubbing Out the World Generator"
+                },
+                { "id": 445, "title": "Day 445: Cleaning Up Entity Creation" },
+                {
+                    "id": 446,
+                    "title": "Day 446: Generating Possible Room Volumes"
+                },
+                { "id": 447, "title": "Day 447: Placing Adjacent Rooms" },
+                {
+                    "id": 448,
+                    "title": "Day 448: Explicitly Placed Room Connections"
+                },
+                { "id": 449, "title": "Day 449: Preventing Overlapping Rooms" },
+                {
+                    "id": 450,
+                    "title": "Day 450: Supporting All Room Connection Directions"
+                },
+                { "id": 451, "title": "Day 451: Updating Unproject" },
+                {
+                    "id": 452,
+                    "title": "Day 452: Improving Camera Placement and Room Alignment"
+                },
+                { "id": 453, "title": "Day 453: Parsing PNG Headers" },
+                { "id": 454, "title": "Day 454: Parsing ZLIB Headers" },
+                { "id": 455, "title": "Day 455: Decoding PNG Huffman Tables" },
+                {
+                    "id": 456,
+                    "title": "Day 456: Decoding PNG Length and Distance Extra Bits"
+                },
+                {
+                    "id": 457,
+                    "title": "Day 457: Implementing PNG Reconstruction Filters"
+                },
+                { "id": 458, "title": "Day 458: Debugging the PNG Reader" },
+                {
+                    "id": 459,
+                    "title": "Day 459: Partitioning the PNG Reader for Integration"
+                },
+                {
+                    "id": 460,
+                    "title": "Day 460: Providing Platform File Information to the Game"
+                },
+                {
+                    "id": 461,
+                    "title": "Day 461: Checking for File Date Changes"
+                },
+                {
+                    "id": 462,
+                    "title": "Day 462: Extracting Asset Tiles from Gridded PNGs"
+                },
+                { "id": 463, "title": "Day 463: Preparing HHAs for Rewriting" },
+                {
+                    "id": 464,
+                    "title": "Day 464: Applying Asset Types and Tags to Imported PNGs"
+                },
+                { "id": 465, "title": "Day 465: Updating HHAs from V0 to V1" },
+                {
+                    "id": 466,
+                    "title": "Day 466: Loading and Displaying HHA Files as Text"
+                },
+                {
+                    "id": 467,
+                    "title": "Day 467: Updating the Game to HHA Version 1"
+                },
+                {
+                    "id": 468,
+                    "title": "Day 468: Handling Annotation Data During Import"
+                },
+                { "id": 469, "title": "Day 469: Downsampling Imported Assets" },
+                {
+                    "id": 470,
+                    "title": "Day 470: Separating the Renderer Completely (Part 1)"
+                },
+                {
+                    "id": 471,
+                    "title": "Day 471: Separating the Renderer Completely (Part 2)"
+                },
+                {
+                    "id": 472,
+                    "title": "Day 472: Making a Simple Scene with the Separated Renderer"
+                },
+                {
+                    "id": 473,
+                    "title": "Day 473: Removing Screen Coordinates from the Renderer"
+                },
+                { "id": 474, "title": "Day 474: (title not captured here)" },
+                { "id": 475, "title": "Day 475: (title not captured here)" },
+                { "id": 476, "title": "Day 476: (title not captured here)" },
+                { "id": 477, "title": "Day 477: (title not captured here)" },
+                { "id": 478, "title": "Day 478: (title not captured here)" },
+                { "id": 479, "title": "Day 479: (title not captured here)" },
+                { "id": 480, "title": "Day 480: (title not captured here)" },
+                { "id": 481, "title": "Day 481: (title not captured here)" },
+                { "id": 482, "title": "Day 482: (title not captured here)" },
+                { "id": 483, "title": "Day 483: (title not captured here)" },
+                { "id": 484, "title": "Day 484: (title not captured here)" },
+                { "id": 485, "title": "Day 485: (title not captured here)" },
+                { "id": 486, "title": "Day 486: (title not captured here)" },
+                { "id": 487, "title": "Day 487: (title not captured here)" },
+                { "id": 488, "title": "Day 488: (title not captured here)" },
+                { "id": 489, "title": "Day 489: (title not captured here)" },
+                { "id": 490, "title": "Day 490: (title not captured here)" },
+                { "id": 491, "title": "Day 491: (title not captured here)" },
+                { "id": 492, "title": "Day 492: (title not captured here)" },
+                { "id": 493, "title": "Day 493: (title not captured here)" },
+                { "id": 494, "title": "Day 494: (title not captured here)" },
+                { "id": 495, "title": "Day 495: (title not captured here)" },
+                { "id": 496, "title": "Day 496: (title not captured here)" },
+                { "id": 497, "title": "Day 497: (title not captured here)" },
+                { "id": 498, "title": "Day 498: (title not captured here)" },
+                { "id": 499, "title": "Day 499: (title not captured here)" },
+                { "id": 500, "title": "Day 500: (title not captured here)" },
+                { "id": 501, "title": "Day 501: (title not captured here)" },
+                { "id": 502, "title": "Day 502: (title not captured here)" },
+                { "id": 503, "title": "Day 503: (title not captured here)" },
+                { "id": 504, "title": "Day 504: (title not captured here)" },
+                { "id": 505, "title": "Day 505: (title not captured here)" },
+                { "id": 506, "title": "Day 506: (title not captured here)" },
+                { "id": 507, "title": "Day 507: (title not captured here)" },
+                { "id": 508, "title": "Day 508: (title not captured here)" },
+                { "id": 509, "title": "Day 509: (title not captured here)" },
+                { "id": 510, "title": "Day 510: (title not captured here)" },
+                { "id": 511, "title": "Day 511: (title not captured here)" },
+                { "id": 512, "title": "Day 512: (title not captured here)" },
+                { "id": 513, "title": "Day 513: (title not captured here)" },
+                { "id": 514, "title": "Day 514: (title not captured here)" },
+                { "id": 515, "title": "Day 515: (title not captured here)" },
+                { "id": 516, "title": "Day 516: (title not captured here)" },
+                { "id": 517, "title": "Day 517: (title not captured here)" },
+                { "id": 518, "title": "Day 518: (title not captured here)" },
+                { "id": 519, "title": "Day 519: (title not captured here)" },
+                { "id": 520, "title": "Day 520: (title not captured here)" },
+                { "id": 521, "title": "Day 521: (title not captured here)" },
+                { "id": 522, "title": "Day 522: (title not captured here)" },
+                { "id": 523, "title": "Day 523: Introduction to Git" },
+                { "id": 524, "title": "Day 524: (title not captured here)" },
+                { "id": 525, "title": "Day 525: (title not captured here)" },
+                { "id": 526, "title": "Day 526: (title not captured here)" },
+                { "id": 527, "title": "Day 527: (title not captured here)" },
+                { "id": 528, "title": "Day 528: (title not captured here)" },
+                { "id": 529, "title": "Day 529: (title not captured here)" },
+                { "id": 530, "title": "Day 530: (title not captured here)" },
+                { "id": 531, "title": "Day 531: (title not captured here)" },
+                { "id": 532, "title": "Day 532: (title not captured here)" },
+                { "id": 533, "title": "Day 533: (title not captured here)" },
+                { "id": 534, "title": "Day 534: (title not captured here)" },
+                { "id": 535, "title": "Day 535: (title not captured here)" },
+                { "id": 536, "title": "Day 536: (title not captured here)" },
+                { "id": 537, "title": "Day 537: (title not captured here)" },
+                { "id": 538, "title": "Day 538: (title not captured here)" },
+                { "id": 539, "title": "Day 539: (title not captured here)" },
+                { "id": 540, "title": "Day 540: (title not captured here)" },
+                { "id": 541, "title": "Day 541: (title not captured here)" },
+                { "id": 542, "title": "Day 542: (title not captured here)" },
+                { "id": 543, "title": "Day 543: (title not captured here)" },
+                { "id": 544, "title": "Day 544: (title not captured here)" },
+                { "id": 545, "title": "Day 545: (title not captured here)" },
+                { "id": 546, "title": "Day 546: (title not captured here)" },
+                { "id": 547, "title": "Day 547: (title not captured here)" },
+                { "id": 548, "title": "Day 548: (title not captured here)" },
+                { "id": 549, "title": "Day 549: (title not captured here)" },
+                { "id": 550, "title": "Day 550: (title not captured here)" },
+                { "id": 551, "title": "Day 551: (title not captured here)" },
+                { "id": 552, "title": "Day 552: (title not captured here)" },
+                { "id": 553, "title": "Day 553: (title not captured here)" },
+                { "id": 554, "title": "Day 554: (title not captured here)" },
+                { "id": 555, "title": "Day 555: (title not captured here)" },
+                { "id": 556, "title": "Day 556: (title not captured here)" },
+                { "id": 557, "title": "Day 557: (title not captured here)" },
+                { "id": 558, "title": "Day 558: (title not captured here)" },
+                { "id": 559, "title": "Day 559: (title not captured here)" },
+                { "id": 560, "title": "Day 560: (title not captured here)" },
+                { "id": 561, "title": "Day 561: (title not captured here)" },
+                { "id": 562, "title": "Day 562: (title not captured here)" },
+                { "id": 563, "title": "Day 563: (title not captured here)" },
+                { "id": 564, "title": "Day 564: (title not captured here)" },
+                { "id": 565, "title": "Day 565: (title not captured here)" },
+                { "id": 566, "title": "Day 566: (title not captured here)" },
+                { "id": 567, "title": "Day 567: (title not captured here)" },
+                { "id": 568, "title": "Day 568: (title not captured here)" },
+                { "id": 569, "title": "Day 569: (title not captured here)" },
+                { "id": 570, "title": "Day 570: (title not captured here)" },
+                { "id": 571, "title": "Day 571: (title not captured here)" },
+                { "id": 572, "title": "Day 572: (title not captured here)" },
+                { "id": 573, "title": "Day 573: (title not captured here)" },
+                { "id": 574, "title": "Day 574: (title not captured here)" },
+                { "id": 575, "title": "Day 575: (title not captured here)" },
+                { "id": 576, "title": "Day 576: (title not captured here)" },
+                { "id": 577, "title": "Day 577: (title not captured here)" },
+                { "id": 578, "title": "Day 578: (title not captured here)" },
+                { "id": 579, "title": "Day 579: (title not captured here)" },
+                { "id": 580, "title": "Day 580: (title not captured here)" },
+                { "id": 581, "title": "Day 581: (title not captured here)" },
+                { "id": 582, "title": "Day 582: (title not captured here)" },
+                { "id": 583, "title": "Day 583: (title not captured here)" },
+                { "id": 584, "title": "Day 584: (title not captured here)" },
+                { "id": 585, "title": "Day 585: (title not captured here)" },
+                { "id": 586, "title": "Day 586: (title not captured here)" },
                 {
                     "id": 587,
                     "title": "Day 587: Optimizing the Specular to Diffuse Transform"
@@ -452,11 +1647,182 @@
                     "id": 604,
                     "title": "Day 604: Adding a Voxel Utility Struct"
                 },
-                { "id": 605, "title": "Day 605: Cleaning Up the Lighting Code" }
+                {
+                    "id": 605,
+                    "title": "Day 605: Cleaning Up the Lighting Code"
+                },
+                {
+                    "id": 606,
+                    "title": "Day 606: Debugging Grid Raycasting with Visualizations"
+                },
+                {
+                    "id": 607,
+                    "title": "Day 607: Finishing Debugging the Grid Raycaster"
+                },
+                { "id": 608, "title": "Day 608: Visualizing Lighting Values" },
+                {
+                    "id": 609,
+                    "title": "Day 609: Reducing Light Contributions from Inaccessible Voxels"
+                },
+                {
+                    "id": 610,
+                    "title": "Day 610: Removing Incorrect Voxel-Voxel Reflections"
+                },
+                {
+                    "id": 611,
+                    "title": "Day 611: Examining the CPU Voxel Sampling"
+                },
+                {
+                    "id": 612,
+                    "title": "Day 612: First Pass Optimization of Voxel Sampling"
+                },
+                {
+                    "id": 613,
+                    "title": "Day 613: Merging the Raycaster with the Sampler"
+                },
+                {
+                    "id": 614,
+                    "title": "Day 614: Continuing Streamlining the Raycaster"
+                },
+                {
+                    "id": 615,
+                    "title": "Day 615: Optimized Grid Step Selection"
+                },
+                { "id": 616, "title": "Day 616: Tableless Grid Walk" },
+                { "id": 617, "title": "Day 617: Half-resolution Spatial Grid" },
+                { "id": 618, "title": "Day 618: Analyzing the Diffuse Blur" },
+                { "id": 619, "title": "Day 619: Adding Asset Tag Hashes" },
+                { "id": 620, "title": "Day 620: Asset Tag Usage Code" },
+                {
+                    "id": 621,
+                    "title": "Day 621: Asset Tags in the World Generator"
+                },
+                { "id": 622, "title": "Day 622: Debugging Asset Tag Hashes" },
+                { "id": 623, "title": "Day 623: Investigating a Lighting Bug" },
+                {
+                    "id": 624,
+                    "title": "Day 624: Turns Out It Really WAS a Feature"
+                },
+                { "id": 625, "title": "Day 625: Fixing the \"Lighting\" Bug" },
+                { "id": 626, "title": "Day 626: Cleaning Up Traversables" },
+                { "id": 627, "title": "Day 627: Opening Doors with Tiles" },
+                { "id": 628, "title": "Day 628: Brains and Aprons" },
+                { "id": 629, "title": "Day 629: Removing Entity Generators" },
+                {
+                    "id": 630,
+                    "title": "Day 630: Adding Interesting Tile Patterns"
+                },
+                { "id": 631, "title": "Day 631: Revisiting Collision" },
+                {
+                    "id": 632,
+                    "title": "Day 632: Experimenting with Voxelized Collision"
+                },
+                {
+                    "id": 633,
+                    "title": "Day 633: Narrowing in on a Collision Scheme"
+                },
+                {
+                    "id": 634,
+                    "title": "Day 634: Final Collision Resolution Design"
+                },
+                {
+                    "id": 635,
+                    "title": "Day 635: Debugging Voxel Motion Stepping"
+                },
+                {
+                    "id": 636,
+                    "title": "Day 636: Unembedding Colliding Objects"
+                },
+                { "id": 637, "title": "Day 637: Adding Collision Spheres" },
+                { "id": 638, "title": "Day 638: Recording Diagram Commands" },
+                { "id": 639, "title": "Day 639: Drawing Debug Diagrams" },
+                {
+                    "id": 640,
+                    "title": "Day 640: Investigating Corner Collisions"
+                },
+                {
+                    "id": 641,
+                    "title": "Day 641: Voxel Flood Fill for Collision Search"
+                },
+                {
+                    "id": 642,
+                    "title": "Day 642: Debugging Voxel Collision Bounds"
+                },
+                { "id": 643, "title": "Day 643: Hunting for Collision Bugs" },
+                { "id": 644, "title": "Day 644: Stepping Through Diagrams" },
+                {
+                    "id": 645,
+                    "title": "Day 645: Switching to Voxel Centers for Collision"
+                },
+                { "id": 646, "title": "Day 646: Removing Z from Lighting" },
+                {
+                    "id": 647,
+                    "title": "Day 647: Debugging Simplified Lighting"
+                },
+                { "id": 648, "title": "Day 648: Rebuilding Light Tables" },
+                {
+                    "id": 649,
+                    "title": "Day 649: Removing Lighting Walk Tables"
+                },
+                {
+                    "id": 650,
+                    "title": "Day 650: Debugging Light Sampling Locations"
+                },
+                { "id": 651, "title": "Day 651: Fixing Light Feedback" },
+                { "id": 652, "title": "Day 652: Stochastic Ray Origins" },
+                {
+                    "id": 653,
+                    "title": "Day 653: Adding a Filmic Response Curve"
+                },
+                {
+                    "id": 654,
+                    "title": "Day 654: Self-illuminating Floor Tiles"
+                },
+                { "id": 655, "title": "Day 655: Revisiting Entity Movement" },
+                { "id": 656, "title": "Day 656: Sketching Out Move Queues" },
+                { "id": 657, "title": "Day 657: Implementing Move Queues" },
+                { "id": 658, "title": "Day 658: Handling Glove Collisions" },
+                {
+                    "id": 659,
+                    "title": "Day 659: Immediate-mode Level Generation"
+                },
+                { "id": 660, "title": "Day 660: Randomized Overworld Layout" },
+                { "id": 661, "title": "Day 661: Connecting the Overworld Map" },
+                {
+                    "id": 662,
+                    "title": "Day 662: Generating Entities from Layouts"
+                },
+                {
+                    "id": 663,
+                    "title": "Day 663: Simplifying Entity Storage, Part I"
+                },
+                {
+                    "id": 664,
+                    "title": "Day 664: Simplifying Entity Storage Part II"
+                },
+                {
+                    "id": 665,
+                    "title": "Day 665: Changing How Entities are Packed and Unpacked"
+                },
+                { "id": 666, "title": "Day 666: Entity Packing and Unpacking" },
+                {
+                    "id": 667,
+                    "title": "Day 667: Simplified Tile Occupancy Checking"
+                }
             ]
         </script>
 
         <script>
+            function splitId(v) {
+                const s = String(v);
+                const m = s.match(/^(\d+)(.*)$/);
+                return {
+                    idRaw: s,
+                    num: m ? parseInt(m[1], 10) : 0,
+                    suffix: m ? (m[2] || "").toLowerCase().trim() : "",
+                };
+            }
+
             document.addEventListener("DOMContentLoaded", function () {
                 // --- Visited storage helpers ---
                 const VISITED_KEY = "hh_visited_chapters_v1";
@@ -506,14 +1872,27 @@
                     }
                 }
 
-                // Map JSON -> existing shape { num, label }
+                // Map JSON -> shape we need { idRaw, num, suffix, label }
                 const data = readChaptersData();
                 const CHAPTERS = data
-                    .map((d) => ({
-                        num: Number(d.id),
-                        label: `${d.title || ""}`.trim(),
-                    }))
-                    .sort((a, b) => (a.num || 0) - (b.num || 0));
+                    .map((d) => {
+                        const p = splitId(d.id);
+                        return {
+                            idRaw: p.idRaw, // "1" or "1qa"
+                            num: p.num, // 1
+                            suffix: p.suffix, // "" or "qa"
+                            label: `${d.title || ""}`.trim(),
+                        };
+                    })
+                    .sort((a, b) => {
+                        // primary: numeric day
+                        if (a.num !== b.num) return a.num - b.num;
+                        // secondary: empty suffix first, then lexicographic
+                        if (a.suffix === b.suffix) return 0;
+                        if (a.suffix === "") return -1;
+                        if (b.suffix === "") return 1;
+                        return a.suffix.localeCompare(b.suffix);
+                    });
 
                 const list = document.getElementById("list");
                 const q = document.getElementById("q");
@@ -548,7 +1927,7 @@
                             "</span>";
 
                         // Always open video_player.html with chapter anchor
-                        const target = buildVideoHref(item.num);
+                        const target = buildVideoHref(item.idRaw);
                         btn.addEventListener("click", function () {
                             // Mark visited immediately so it sticks even if user comes back
                             visited.add(item.num);
