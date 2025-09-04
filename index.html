@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Handmade Hero — Offline Viewer</title>
+        <style>
+            :root {
+                --bg: #0b0b0e; /* page background, near-black */
+                --panel: #141414; /* card/panel background */
+                --ink: #f5f5f5; /* primary text */
+                --muted: #a1a1aa; /* muted secondary text */
+                --accent: #3b82f6; /* main blue accent */
+                --radius: 3px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                font:
+                    16px/1.5 system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Ubuntu,
+                    Cantarell,
+                    Noto Sans,
+                    Helvetica Neue,
+                    Arial;
+                color: var(--ink);
+                background: linear-gradient(180deg, #0b0b0e, var(--bg));
+            }
+            .wrap {
+                max-width: 760px;
+                margin: auto;
+                padding: 24px;
+                width: 100%;
+            }
+            h1 {
+                margin: 0 0 12px;
+                font-size: 22px;
+            }
+            p.muted {
+                color: var(--muted);
+                margin-top: 0;
+            }
+            .list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 16px;
+            }
+            .btn {
+                appearance: none;
+                border: 1px solid rgba(59, 130, 246, 0.35);
+                background: var(--panel);
+                color: var(--ink);
+                border-radius: 12px;
+                padding: 12px 14px;
+                text-align: left;
+                cursor: pointer;
+                width: 100%;
+            }
+            .btn:hover {
+                background: rgba(59, 130, 246, 0.12);
+            }
+            .row {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .num {
+                font-variant-numeric: tabular-nums;
+                color: var(--muted);
+                min-width: 3.5ch;
+            }
+            .ttl {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .go {
+                color: var(--accent);
+            }
+            .search {
+                width: 100%;
+                padding: 10px 12px;
+                border-radius: 12px;
+                border: 1px solid rgba(59, 130, 246, 0.35);
+                background: #0b0b0e;
+                color: var(--ink);
+                margin-top: 8px;
+            }
+            .small {
+                font-size: 12px;
+                color: var(--muted);
+                text-align: center;
+            }
+            .go.visited {
+                color: #22c55e;
+            } /* green check */
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1>
+                <span aria-hidden="true" style="margin-right: 6px">☰</span>
+                Handmade Hero — Offline Viewer
+            </h1>
+            <p class="muted">
+                Super-simple launcher. Click a chapter to open its HTML page.
+            </p>
+
+            <input
+                id="q"
+                class="search"
+                type="search"
+                placeholder="Filter… (e.g., day number or text)"
+            />
+
+            <div id="list" class="list" role="list"></div>
+
+            <p class="small">
+                Handmade Hero Offline Viewer — for personal backup & educational
+                use.
+            </p>
+        </div>
+
+        <!-- Embedded chapters data -->
+        <script type="application/json" id="chapters-data">
+            [
+                { "id": 1, "title": "Day 001: Setting Up the Windows Build" },
+                {
+                    "id": "1qa",
+                    "title": "Day 001qa: Setting Up the Windows Build - Q&A"
+                },
+                { "id": 2, "title": "Day 002: Opening a Win32 Window" },
+                {
+                    "id": "2qa",
+                    "title": "Day 002qa: Opening a Win32 Window - Q&A"
+                },
+                { "id": 3, "title": "Day 003: Allocating a Back Buffer" },
+                { "id": 4, "title": "Day 004: Animating the Back Buffer" },
+                { "id": 5, "title": "Day 005: Windows Graphics Review" },
+                { "id": 6, "title": "Day 006: Gamepad and Keyboard Input" },
+                { "id": 7, "title": "Day 007: Initializing DirectSound" },
+                {
+                    "id": 8,
+                    "title": "Day 008: Writing a Square Wave to DirectSound"
+                },
+                {
+                    "id": 9,
+                    "title": "Day 009: Variable-Pitch Sine Wave Output"
+                },
+                {
+                    "id": 10,
+                    "title": "Day 010: QueryPerformanceCounter and RDTSC"
+                },
+                {
+                    "id": 11,
+                    "title": "Day 011: The Basics of Platform API Design"
+                },
+                {
+                    "id": 12,
+                    "title": "Day 012: Platform-independent Sound Output"
+                },
+                {
+                    "id": 13,
+                    "title": "Day 013: Platform-independent User Input"
+                },
+                {
+                    "id": 14,
+                    "title": "Day 014: Platform-independent Game Memory"
+                },
+                {
+                    "id": 15,
+                    "title": "Day 015: Platform-independent Debug File I/O"
+                },
+                {
+                    "id": 16,
+                    "title": "Day 016: VisualStudio Compiler Switches"
+                },
+                {
+                    "id": 17,
+                    "title": "Day 017: Unified Keyboard and Gamepad Input"
+                },
+                { "id": 18, "title": "Day 018: Enforcing a Video Frame Rate" },
+                {
+                    "id": 19,
+                    "title": "Day 019: Improving Audio Synchronization"
+                },
+                { "id": 20, "title": "Day 020: Debugging the Audio Sync" },
+                { "id": 21, "title": "Day 021: Loading Game Code Dynamically" },
+                {
+                    "id": 22,
+                    "title": "Day 022: Instantaneous Live Code Editing"
+                },
+                { "id": 23, "title": "Day 023: Looped Live Code Editing" },
+                { "id": 24, "title": "Day 024: Win32 Platform Layer Cleanup" },
+                {
+                    "id": 25,
+                    "title": "Day 025: Finishing the Win32 Prototyping Layer"
+                },
+                {
+                    "id": 26,
+                    "title": "Day 026: Introduction to Game Architecture"
+                },
+                {
+                    "id": 27,
+                    "title": "Day 027: Exploration-based Architecture"
+                },
+                { "id": 28, "title": "Day 028: Drawing a Tile Map" },
+                {
+                    "id": 29,
+                    "title": "Day 029: Basic Tile Map Collision Checking"
+                },
+                { "id": 30, "title": "Day 030: Moving Between Tile Maps" },
+                { "id": 31, "title": "Day 031: Tilemap Coordinate Systems" },
+                {
+                    "id": 32,
+                    "title": "Day 032: Unified Position Representation"
+                },
+                { "id": 33, "title": "Day 033: Virtualized Tile Maps" },
+                { "id": 34, "title": "Day 034: Tile Map Memory" },
+                { "id": 35, "title": "Day 035: Basic Sparse Tilemap Storage" },
+                { "id": 36, "title": "Day 036: Loading BMPs" },
+                { "id": 37, "title": "Day 037: Basic Bitmap Rendering" },
+                { "id": 38, "title": "Day 038: Basic Linear Bitmap Blending" },
+                {
+                    "id": 39,
+                    "title": "Day 039: Basic Bitmap Rendering Cleanup"
+                },
+                {
+                    "id": 40,
+                    "title": "Day 040: Cursor Hiding and Fullscreen Support"
+                },
+                {
+                    "id": 41,
+                    "title": "Day 041: Overview of the Types of Math Used in Games"
+                },
+                { "id": 42, "title": "Day 042: Basic 2D Vectors" },
+                { "id": 43, "title": "Day 043: The Equations of Motion" },
+                { "id": 44, "title": "Day 044: Reflecting Vectors" },
+                {
+                    "id": 45,
+                    "title": "Day 045: Geometric vs. Temporal Movement Search"
+                },
+                { "id": 46, "title": "Day 046: Basic Multiplayer Support" },
+                { "id": 47, "title": "Day 047: Vector Lengths" },
+                {
+                    "id": 48,
+                    "title": "Day 048: Line Segment Intersection Collisions"
+                },
+                {
+                    "id": 49,
+                    "title": "Day 049: Debugging Canonical Coordinates"
+                },
+                {
+                    "id": 50,
+                    "title": "Day 050: Basic Minkowski-based Collision Detection"
+                },
+                {
+                    "id": 51,
+                    "title": "Day 051: Separating Entities By Update Frequency"
+                },
+                {
+                    "id": 52,
+                    "title": "Day 052: Entity Movement in Camera Space"
+                },
+                {
+                    "id": 53,
+                    "title": "Day 053: Environment Elements as Entities"
+                },
+                {
+                    "id": 54,
+                    "title": "Day 054: Removing the Dormant Entity Concept"
+                },
+                { "id": 55, "title": "Day 055: Hash-based World Storage" },
+                { "id": 56, "title": "Day 056: Switch from Tiles to Entities" },
+                {
+                    "id": 57,
+                    "title": "Day 057: Spatially Partitioning Entities"
+                },
+                { "id": 58, "title": "Day 058: Using the Spatial Partition" },
+                {
+                    "id": 59,
+                    "title": "Day 059: Adding a Basic Familiar Entity"
+                },
+                { "id": 60, "title": "Day 060: Adding Hitpoints" },
+                { "id": 61, "title": "Day 061: Adding a Simple Attack" },
+                {
+                    "id": 558,
+                    "title": "Day 558: Assigning Lighting Probe Slots"
+                },
+                {
+                    "id": 559,
+                    "title": "Day 559: Experimenting with Fragment Light Sampling"
+                },
+                {
+                    "id": 560,
+                    "title": "Day 560: Querying Irradiance Directly from Voxels"
+                },
+                {
+                    "id": 561,
+                    "title": "Day 561: Sampling Light Voxels with a Reflection Vector"
+                },
+                { "id": 562, "title": "Day 562: Testing Voxel Light Sampling" },
+                {
+                    "id": 563,
+                    "title": "Day 563: Using the Light Probe Spatial Index"
+                },
+                {
+                    "id": 564,
+                    "title": "Day 564: Improving Trilinear Sampling Results"
+                },
+                {
+                    "id": 565,
+                    "title": "Day 565: Reconstructing Multiple Lights"
+                },
+                {
+                    "id": 566,
+                    "title": "Day 566: Moving to a Voxels-only Lighting Approach"
+                },
+                {
+                    "id": 567,
+                    "title": "Day 567: Large to Small Voxel Transfer"
+                },
+                { "id": 568, "title": "Day 568: Debugging the Raycaster" },
+                {
+                    "id": 569,
+                    "title": "Day 569: Raycasting from Light Probe Locations"
+                },
+                {
+                    "id": 570,
+                    "title": "Day 570: Distinguishing Between Lights and Occluders"
+                },
+                { "id": 571, "title": "Day 571: Adding a Light Hierarchy" },
+                { "id": 572, "title": "Day 572: Scrolling the Lighting Voxel" },
+                { "id": 573, "title": "Day 573: Wiring Up Light Transport" },
+                {
+                    "id": 574,
+                    "title": "Day 574: Experimenting with Voxel Filters"
+                },
+                { "id": 575, "title": "Day 575: Generalizing Code Reloading" },
+                { "id": 576, "title": "Day 576: Octahedral Encoding" },
+                {
+                    "id": 577,
+                    "title": "Day 577: Adding Octahedral Light Atlases"
+                },
+                { "id": 578, "title": "Day 578: Sampling Octahedral Atlases" },
+                { "id": 579, "title": "Day 579: Debugging Octahedral Shading" },
+                {
+                    "id": 580,
+                    "title": "Day 580: Investigating Octahedral Interpolation"
+                },
+                {
+                    "id": 581,
+                    "title": "Day 581: Preparing for Octahedral Indirect Lighting"
+                },
+                {
+                    "id": 582,
+                    "title": "Day 582: Converting Specular Maps to Diffuse"
+                },
+                {
+                    "id": 583,
+                    "title": "Day 583: Streamlining the New Lighting Pipeline"
+                },
+                {
+                    "id": 584,
+                    "title": "Day 584: Enabling Infinite-Bounce Lighting"
+                },
+                {
+                    "id": 585,
+                    "title": "Day 585: Centralized Light Atlas Handling"
+                },
+                {
+                    "id": 586,
+                    "title": "Day 586: Finishing Indirect Diffuse Sampling"
+                },
+                {
+                    "id": 587,
+                    "title": "Day 587: Optimizing the Specular to Diffuse Transform"
+                },
+                {
+                    "id": 588,
+                    "title": "Day 588: Aligning Light Voxels with the Camera"
+                },
+                {
+                    "id": 589,
+                    "title": "Day 589: Aligning Sampling Spheres with the Octahedral Map"
+                },
+                {
+                    "id": 590,
+                    "title": "Day 590: Starting Raycast Optimizations"
+                },
+                {
+                    "id": 591,
+                    "title": "Day 591: Making a Stand-alone Lighting Performance Test"
+                },
+                {
+                    "id": 592,
+                    "title": "Day 592: Capturing the Entire Lighting Data"
+                },
+                {
+                    "id": 593,
+                    "title": "Day 593: Debugging Lighting Validation"
+                },
+                {
+                    "id": 594,
+                    "title": "Day 594: Switching from Center-Radius to Min-Max"
+                },
+                {
+                    "id": 595,
+                    "title": "Day 595: Sketching Out A K-d Tree Loop"
+                },
+                {
+                    "id": 596,
+                    "title": "Day 596: Fleshing Out Kd-Tree Traversal"
+                },
+                { "id": 597, "title": "Day 597: Basic Kd-tree Construction" },
+                {
+                    "id": 598,
+                    "title": "Day 598: Exploring Voxel Partitions for Raycasting"
+                },
+                {
+                    "id": 599,
+                    "title": "Day 599: Implementing the Grid Raycast Postamble"
+                },
+                {
+                    "id": 600,
+                    "title": "Day 600: Better AABB Normal Derivation"
+                },
+                {
+                    "id": 601,
+                    "title": "Day 601: Sketching Out the Walk Table Generator"
+                },
+                {
+                    "id": 602,
+                    "title": "Day 602: Early Termination for the Grid Raytracer"
+                },
+                {
+                    "id": 603,
+                    "title": "Day 603: Grid Raycaster Table Generation"
+                },
+                {
+                    "id": 604,
+                    "title": "Day 604: Adding a Voxel Utility Struct"
+                },
+                { "id": 605, "title": "Day 605: Cleaning Up the Lighting Code" }
+            ]
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // --- Visited storage helpers ---
+                const VISITED_KEY = "hh_visited_chapters_v1";
+                function loadVisited() {
+                    try {
+                        const raw = localStorage.getItem(VISITED_KEY);
+                        const arr = raw ? JSON.parse(raw) : [];
+                        return new Set(Array.isArray(arr) ? arr : []);
+                    } catch {
+                        return new Set();
+                    }
+                }
+                function saveVisited(set) {
+                    try {
+                        localStorage.setItem(
+                            VISITED_KEY,
+                            JSON.stringify(Array.from(set)),
+                        );
+                    } catch {}
+                }
+                // Replace: const visited = loadVisited();
+                let visited = loadVisited();
+                function refreshVisited() {
+                    visited = loadVisited();
+                }
+
+                // Read chapters from embedded JSON
+                function readChaptersData() {
+                    try {
+                        const el = document.getElementById("chapters-data");
+                        if (!el) {
+                            console.warn(
+                                "[index.html] #chapters-data not found",
+                            );
+                            return [];
+                        }
+                        const raw = el.textContent || "[]";
+                        const arr = JSON.parse(raw);
+                        if (!Array.isArray(arr)) return [];
+                        return arr;
+                    } catch (e) {
+                        console.error(
+                            "[index.html] Failed to parse #chapters-data:",
+                            e,
+                        );
+                        return [];
+                    }
+                }
+
+                // Map JSON -> existing shape { num, label }
+                const data = readChaptersData();
+                const CHAPTERS = data
+                    .map((d) => ({
+                        num: Number(d.id),
+                        label: `${d.title || ""}`.trim(),
+                    }))
+                    .sort((a, b) => (a.num || 0) - (b.num || 0));
+
+                const list = document.getElementById("list");
+                const q = document.getElementById("q");
+
+                function render(filter) {
+                    filter = (filter || "").trim().toLowerCase();
+                    list.innerHTML = "";
+                    let shown = 0;
+
+                    CHAPTERS.forEach(function (item) {
+                        const hay = String(
+                            (item.num != null ? item.num : "") +
+                                " " +
+                                (item.label || ""),
+                        ).toLowerCase();
+                        if (filter && hay.indexOf(filter) === -1) return;
+
+                        const isVisited = visited.has(item.num);
+
+                        const btn = document.createElement("button");
+                        btn.className = "btn";
+                        btn.setAttribute("role", "listitem");
+
+                        btn.innerHTML =
+                            '<span class="row">' +
+                            '<span class="ttl">' +
+                            escapeHtml(item.label || "") +
+                            "</span>" +
+                            `<span class="go ${isVisited ? "visited" : ""}" aria-hidden="true">${
+                                isVisited ? "✓" : "→"
+                            }</span>` +
+                            "</span>";
+
+                        // Always open video_player.html with chapter anchor
+                        const target = buildVideoHref(item.num);
+                        btn.addEventListener("click", function () {
+                            // Mark visited immediately so it sticks even if user comes back
+                            visited.add(item.num);
+                            saveVisited(visited);
+                            // Optional: re-render to flip the icon instantly
+                            // (useful if navigation is blocked or user opens in a new tab)
+                            render(q.value);
+
+                            window.location.href = target;
+                        });
+
+                        list.appendChild(btn);
+                        shown++;
+                    });
+
+                    if (!shown) {
+                        const empty = document.createElement("div");
+                        empty.className = "muted";
+                        empty.textContent = "No chapters match your filter.";
+                        list.appendChild(empty);
+                    }
+                }
+
+                function buildVideoHref(numVal) {
+                    const parts = parseNumAndSuffix(numVal);
+                    const anchor =
+                        String(parts.num).padStart(2, "0") + parts.suffix; // keep original 2+suffix
+                    return "video_player.html#" + anchor;
+                }
+
+                function parseNumAndSuffix(v) {
+                    if (v == null) return { num: 0, suffix: "" };
+                    const s = String(v);
+                    const m = s.match(/^(\d+)(.*)$/);
+                    if (!m) return { num: 0, suffix: s.toLowerCase() };
+                    return {
+                        num: parseInt(m[1], 10),
+                        suffix: (m[2] || "").toLowerCase().trim(),
+                    };
+                }
+
+                function escapeHtml(str) {
+                    return String(str).replace(/[&<>"']/g, function (s) {
+                        return {
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                            "'": "&#39;",
+                        }[s];
+                    });
+                }
+
+                q.addEventListener("input", function (e) {
+                    render(e.target.value);
+                });
+                render("");
+
+                // If you want to support clearing history via devtools:
+                // localStorage.removeItem(VISITED_KEY);
+            });
+
+            (function () {
+                // --- Loud start log so you can see if the script even evaluates ---
+                console.log(
+                    "[chapters.html] script evaluating at",
+                    new Date().toISOString(),
+                );
+
+                // Safely parse data
+                function getData() {
+                    try {
+                        const el = document.getElementById("chapters-data");
+                        if (!el) {
+                            console.warn(
+                                "[chapters.html] #chapters-data not found",
+                            );
+                            return [];
+                        }
+                        const data = JSON.parse(el.textContent || "[]");
+                        console.log("[chapters.html] loaded chapters:", data);
+                        return Array.isArray(data) ? data : [];
+                    } catch (e) {
+                        console.error(
+                            "[chapters.html] failed to parse chapters-data:",
+                            e,
+                        );
+                        return [];
+                    }
+                }
+
+                const data = getData();
+                const byId = new Map(data.map((d) => [Number(d.id), d]));
+                const pad = (n) => String(n).padStart(3, "0");
+
+                // Wait for DOM; then render (if elements exist) and announce ready
+                window.addEventListener("DOMContentLoaded", () => {
+                    console.log("[chapters.html] DOMContentLoaded");
+
+                    try {
+                        window.parent?.postMessage(
+                            { type: "chapters-ready" },
+                            "*",
+                        ); // '*' ok for file://
+                        console.log("[chapters.html] sent chapters-ready");
+                    } catch (e) {
+                        console.error(
+                            "[chapters.html] postMessage(chapters-ready) failed:",
+                            e,
+                        );
+                    }
+                });
+
+                window.addEventListener("storage", (e) => {
+                    if (e.key === "hh_visited_chapters_v1") {
+                        refreshVisited();
+                        render(q.value); // keep current filter
+                    }
+                });
+
+                // Respond to parent requests
+                window.addEventListener("message", (ev) => {
+                    const msg = ev.data || {};
+                    if (!msg || msg.type !== "chapter-query") return;
+
+                    console.log(
+                        "[chapters.html] received query:",
+                        msg,
+                        "origin:",
+                        ev.origin,
+                    );
+
+                    const current = Number(msg.currentId);
+                    const arrIndex = data.findIndex(
+                        (d) => Number(d.id) === current,
+                    );
+                    const prev = arrIndex > 0 ? data[arrIndex - 1] : null;
+                    const next =
+                        arrIndex >= 0 && arrIndex < data.length - 1
+                            ? data[arrIndex + 1]
+                            : null;
+                    const cur = byId.get(current) || null;
+
+                    // Render a tiny contextual view *if* DOM nodes exist
+                    const heading = document.getElementById("heading");
+                    const list = document.getElementById("list");
+                    if (heading)
+                        heading.textContent = cur
+                            ? `Day ${pad(current)} — ${cur.title}`
+                            : `Day ${pad(current)} — Unknown`;
+                    if (list) {
+                        const parts = [];
+                        if (prev) parts.push(`<li>Prev: ${prev.title}</li>`);
+                        if (next) parts.push(`<li>Next: ${next.title}</li>`);
+                        list.innerHTML =
+                            parts.join("") || "<li>No neighbors</li>";
+                    }
+
+                    const response = {
+                        type: "chapter-response",
+                        current: cur,
+                        prev,
+                        next,
+                    };
+                    console.log("[chapters.html] sending response:", response);
+
+                    try {
+                        window.parent?.postMessage(response, "*"); // '*' ok for file://
+                    } catch (e) {
+                        console.error(
+                            "[chapters.html] postMessage(response) failed:",
+                            e,
+                        );
+                    }
+                });
+            })();
+        </script>
+
+        <footer
+            style="
+                text-align: center;
+                font-size: 13px;
+                color: #9ca3af;
+                padding: 12px;
+                margin-top: auto;
+            "
+        ></footer>
+    </body>
+</html>

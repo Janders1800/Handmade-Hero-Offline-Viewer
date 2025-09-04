@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Handmade Hero — Video Player</title>
+        <style>
+            :root {
+                --bg: #0b0b0e;
+                --panel: #141414;
+                --ink: #f5f5f5;
+                --muted: #a1a1aa;
+                --accent: #3b82f6;
+                --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+                --radius: 3px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+            }
+            body {
+                font:
+                    16px/1.5 system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    Ubuntu,
+                    Cantarell,
+                    Noto Sans,
+                    "Helvetica Neue",
+                    Arial,
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji";
+                color: var(--ink);
+                background: linear-gradient(180deg, #0b0b0e, var(--bg));
+                display: flex;
+                flex-direction: column;
+            }
+            .app {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                padding: 16px;
+                min-height: 0;
+            }
+
+            /* Header */
+            header {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .home-btn {
+                justify-self: start;
+            }
+            .title {
+                font-weight: 700;
+                font-size: clamp(18px, 2.4vw, 24px);
+                justify-self: start; /* left edge */
+            }
+            .page-title {
+                grid-column: 2;
+                justify-self: center;
+                text-align: center;
+                font-size: clamp(18px, 2.4vw, 24px);
+                font-weight: 700;
+                pointer-events: none;
+                margin-inline: 30px;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .credits-btn {
+                justify-self: end;
+            }
+
+            /* Buttons */
+            .btn {
+                appearance: none;
+                border: 1px solid rgba(59, 130, 246, 0.35);
+                background: transparent;
+                color: var(--ink);
+                padding: 10px 14px;
+                cursor: pointer;
+                transition:
+                    0.15s transform,
+                    0.2s background,
+                    0.2s border-color,
+                    0.2s opacity;
+                user-select: none;
+                white-space: nowrap;
+            }
+            .btn:hover {
+                background-color: rgba(59, 130, 246, 0.12);
+                border-color: rgba(59, 130, 246, 0.55);
+            }
+            .btn:active {
+                transform: translateY(1px);
+            }
+            .btn[disabled] {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+            .btn.small {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+
+            /* Pills */
+            .pill {
+                font-variant-numeric: tabular-nums;
+                color: var(--ink);
+                background: rgba(59, 130, 246, 0.1);
+                padding: 6px 10px;
+                border: 1px solid rgba(59, 130, 246, 0.35);
+                width: max-content;
+            }
+
+            /* Layout */
+            .grid {
+                flex: 1;
+                display: grid;
+                grid-template-columns: 3fr 1fr;
+                gap: 16px;
+                min-height: 0;
+            }
+            @media (max-width: 1000px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            .card {
+                background: var(--panel);
+                box-shadow: var(--shadow);
+                border: 1px solid rgba(59, 130, 246, 0.18);
+                min-height: 0;
+            }
+            .panel {
+                padding: 14px 16px;
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+            }
+            .panel h3 {
+                margin: 0 0 10px;
+                font-size: 15px;
+                letter-spacing: 0.2px;
+                color: var(--accent);
+            }
+
+            /* Video */
+            .video-wrap {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+            }
+            video {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 16/9;
+                background: #000;
+                outline: 1px solid rgba(59, 130, 246, 0.25);
+                flex: 1;
+                object-fit: contain;
+            }
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 14px;
+            }
+            .controls .row {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                align-items: center;
+                width: 100%;
+            }
+            .controls-left {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                flex: 1;
+            }
+            .controls-right {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-left: auto;
+            }
+
+            /* Chapters */
+            .right-col {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                min-height: 0;
+            }
+            .markers {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                overflow-y: auto;
+                padding-right: 6px;
+                min-height: 0;
+            }
+            .marker {
+                display: flex;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .marker .time {
+                opacity: 0.85;
+                font-variant-numeric: tabular-nums;
+                white-space: nowrap;
+                align-self: start;
+            }
+            .marker button {
+                display: grid;
+                grid-template-columns: max-content 1fr;
+                column-gap: 10px;
+                row-gap: 4px;
+                align-items: start;
+                justify-content: start;
+                width: 100%;
+                text-align: left;
+                padding: 10px 12px;
+                background-image: linear-gradient(
+                    to right,
+                    rgba(59, 130, 246, 0.25),
+                    rgba(59, 130, 246, 0.25)
+                );
+                background-repeat: no-repeat;
+                background-size: var(--fill, 0%) 100%;
+                position: relative;
+                border: 1px solid rgba(59, 130, 246, 0.25);
+            }
+            .marker .label {
+                flex: 1;
+                overflow: visible;
+                text-overflow: clip;
+                white-space: normal;
+                word-break: break-word;
+            }
+            .marker button.active {
+                outline: 2px solid var(--accent);
+                margin: 2px;
+            }
+
+            /* Scrollbars (only markers) */
+            .markers::-webkit-scrollbar {
+                width: 8px;
+            }
+            .markers::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .markers::-webkit-scrollbar-thumb {
+                background-color: rgba(59, 130, 246, 0.35);
+            }
+            .markers::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(59, 130, 246, 0.6);
+            }
+            .markers {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(59, 130, 246, 0.35) transparent;
+            }
+
+            /* Dialog */
+            dialog {
+                background: var(--panel);
+                color: var(--ink);
+                border: 1px solid rgba(59, 130, 246, 0.35);
+                box-shadow: var(--shadow);
+                padding: 16px 18px;
+                width: auto;
+            }
+            dialog[open] {
+                inset: 12px 12px auto auto;
+                transform: none;
+            }
+            dialog::backdrop {
+                background: rgba(0, 0, 0, 0.6);
+            }
+            .credits-title {
+                margin: 0 0 8px;
+                font-size: 16px;
+                color: var(--accent);
+            }
+            .credits-actions {
+                margin-top: 12px;
+                display: flex;
+                justify-content: flex-end;
+                gap: 8px;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    scroll-behavior: auto !important;
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <header>
+                <button
+                    class="btn home-btn title"
+                    type="button"
+                    id="homeBtn"
+                    aria-label="Back to index"
+                >
+                    <span aria-hidden="true" style="margin-right: 6px">☰</span>
+                    Handmade Hero
+                </button>
+                <div class="page-title" id="pageTitle" aria-live="polite">
+                    Day 000
+                </div>
+                <button
+                    class="btn small credits-btn"
+                    type="button"
+                    id="creditsBtn"
+                    title="Show credits"
+                >
+                    Credits
+                </button>
+            </header>
+
+            <main class="grid" id="main">
+                <section class="card video-wrap" aria-label="Video player">
+                    <video
+                        id="video"
+                        controls
+                        preload="metadata"
+                        playsinline
+                        aria-label="Episode video"
+                        controlslist="nodownload"
+                    >
+                        <source id="videoSource" type="video/mp4" />
+                    </video>
+                    <div
+                        class="controls"
+                        role="group"
+                        aria-label="Playback controls"
+                    >
+                        <div class="row">
+                            <div class="controls-left">
+                                <button
+                                    class="btn"
+                                    type="button"
+                                    id="back10"
+                                    aria-label="Back 10 seconds"
+                                >
+                                    ⟲ 10s
+                                </button>
+                                <button
+                                    class="btn"
+                                    type="button"
+                                    id="forward10"
+                                    aria-label="Forward 10 seconds"
+                                >
+                                    10s ⟳
+                                </button>
+                                <button
+                                    class="btn"
+                                    type="button"
+                                    id="playPause"
+                                    aria-label="Play or pause"
+                                >
+                                    ▶︎/⏸
+                                </button>
+                                <span class="pill" id="time" aria-live="off"
+                                    >00:00 / 00:00</span
+                                >
+                            </div>
+                            <div class="controls-right">
+                                <button
+                                    class="btn small"
+                                    type="button"
+                                    id="rateDown"
+                                    aria-label="Slower"
+                                >
+                                    −
+                                </button>
+                                <span class="pill" id="rate" aria-live="polite"
+                                    >1.00×</span
+                                >
+                                <button
+                                    class="btn small"
+                                    type="button"
+                                    id="rateUp"
+                                    aria-label="Faster"
+                                >
+                                    +
+                                </button>
+                                <button
+                                    class="btn small"
+                                    type="button"
+                                    id="fsBtn"
+                                    title="Fullscreen (F)"
+                                    aria-label="Toggle fullscreen"
+                                >
+                                    ⛶
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="right-col" aria-label="Navigation">
+                    <button
+                        class="btn"
+                        type="button"
+                        id="prevVideo"
+                        aria-label="Previous video"
+                        disabled
+                    >
+                        ← Previous
+                    </button>
+                    <section class="card panel" aria-label="Chapters">
+                        <h3>Chapters</h3>
+                        <div
+                            id="markers"
+                            class="markers"
+                            aria-live="polite"
+                        ></div>
+                    </section>
+                    <button
+                        class="btn"
+                        type="button"
+                        id="nextVideo"
+                        aria-label="Next video"
+                        disabled
+                    >
+                        Next →
+                    </button>
+                </aside>
+            </main>
+        </div>
+
+        <template id="markerTpl">
+            <span class="marker">
+                <button class="btn small" type="button" data-action="jump">
+                    <span class="time"></span>
+                    <span class="label"></span>
+                </button>
+            </span>
+        </template>
+
+        <dialog id="creditsDialog" aria-labelledby="creditsTitle">
+            <h3 class="credits-title" id="creditsTitle">Credits</h3>
+            <ul class="credits-list">
+                <li>Host — Casey Muratori</li>
+                <li>Indexer — Colin Snover</li>
+                <li>Indexer — Kasper Sauramo</li>
+                <li>Indexer — Miguel Lechón</li>
+                <li>Indexer — Ben Craddock</li>
+                <li>Offline viewer — Janders</li>
+            </ul>
+            <div class="credits-actions">
+                <button class="btn small" type="button" id="closeCredits">
+                    Close
+                </button>
+            </div>
+        </dialog>
+
+        <!-- Hidden iframes for metadata/timestamps -->
+        <iframe
+            id="chaptersFrame"
+            src="index.html"
+            hidden
+            title="Chapters data"
+        ></iframe>
+        <iframe id="timestampsFrame" hidden title="Timestamps data"></iframe>
+
+        <script>
+            (() => {
+                "use strict";
+
+                /* ========= Short helpers ========= */
+                const $ = (s, r = document) => r.querySelector(s);
+                const pad3 = (n) => String(n).padStart(3, "0");
+                const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+                const formatTime = (sec) => {
+                    if (!Number.isFinite(sec)) return "00:00";
+                    const s = Math.max(0, sec | 0);
+                    const h = (s / 3600) | 0,
+                        m = ((s % 3600) / 60) | 0,
+                        ss = s % 60;
+                    return (
+                        (h ? String(h).padStart(2, "0") + ":" : "") +
+                        String(m).padStart(2, "0") +
+                        ":" +
+                        String(ss).padStart(2, "0")
+                    );
+                };
+                const nowMs = () => performance.now?.() ?? Date.now();
+
+                /* ========= Episode detection ========= */
+                const fromHash = () => {
+                    const n = Number(location.hash.slice(1));
+                    return Number.isFinite(n) && n > 0 ? n : null;
+                };
+                const fromPath = () => {
+                    const m = location.pathname.match(/\/(\d{3})\//);
+                    return m ? Number(m[1]) : null;
+                };
+                let currentId = fromHash() ?? fromPath() ?? 1;
+
+                /* ========= Elements ========= */
+                const video = $("#video");
+                const videoSource = $("#videoSource");
+                const markersEl = $("#markers");
+                const markerTpl = $("#markerTpl");
+                const timeEl = $("#time");
+                const rateEl = $("#rate");
+                const prevBtn = $("#prevVideo");
+                const nextBtn = $("#nextVideo");
+                const timestampsFrame = $("#timestampsFrame");
+                const chaptersFrame = $("#chaptersFrame");
+                const pageTitleEl = $("#pageTitle");
+
+                /* ========= Constants ========= */
+                const VOLUME_KEY = "video_volume";
+                const AUTO_SCROLL_DEBOUNCE_MS = 120;
+                const MAX_RATE = 4,
+                    MIN_RATE = 0.25,
+                    RATE_STEP = 0.25;
+
+                /* ========= State ========= */
+                let chapters = [];
+                let lastActiveChapterBtn = null,
+                    lastScrollTs = 0,
+                    lastActiveChapterIndex = -1;
+                let suppressIndexOnce = -1,
+                    suppressExpiryTs = 0;
+
+                /* ========= Navigation helpers ========= */
+                const hrefFor = (id) => `video_player.html#${id}`;
+                const cleanTitle = (t = "") =>
+                    t.replace(/^Day\s*\d+\s*[:\-–—]?\s*/i, "").trim();
+                const buildBaseFilename = (id, title) =>
+                    `Handmade Hero Day ${pad3(id)}${title ? " - " + title : ""} (1080p_30fps_H264-128kbit_AAC)`;
+
+                // ===== Visited tracking (shared with index) =====
+                const VISITED_KEY = "hh_visited_chapters_v1";
+
+                function loadVisitedSet() {
+                    try {
+                        const raw = localStorage.getItem(VISITED_KEY);
+                        const arr = raw ? JSON.parse(raw) : [];
+                        return new Set(Array.isArray(arr) ? arr : []);
+                    } catch {
+                        return new Set();
+                    }
+                }
+                function saveVisitedSet(set) {
+                    try {
+                        localStorage.setItem(
+                            VISITED_KEY,
+                            JSON.stringify(Array.from(set)),
+                        );
+                    } catch {}
+                }
+                /** Mark a chapter id as visited; also pokes the iframe via postMessage (optional). */
+                function markVisited(id) {
+                    const set = loadVisitedSet();
+                    if (!set.has(Number(id))) {
+                        set.add(Number(id));
+                        saveVisitedSet(set);
+                        // Optional: tell the iframe too (works even on file:// in modern browsers)
+                        try {
+                            chaptersFrame.contentWindow?.postMessage(
+                                { type: "mark-visited", id: Number(id) },
+                                "*",
+                            );
+                        } catch {}
+                    }
+                }
+
+                /* ========= Chapters coercion ========= */
+                function coerceChapters(raw) {
+                    const base = (raw || [])
+                        .map((r) => ({
+                            start: Number(r.start ?? r.time),
+                            end: Number(r.end),
+                            label: String(r.label ?? "").trim() || "Marker",
+                        }))
+                        .filter((r) => Number.isFinite(r.start))
+                        .sort((a, b) => a.start - b.start);
+                    for (let i = 0; i < base.length; i++) {
+                        if (!Number.isFinite(base[i].end)) {
+                            const nxt = base[i + 1];
+                            if (nxt && Number.isFinite(nxt.start))
+                                base[i].end = nxt.start;
+                        }
+                        if (
+                            Number.isFinite(base[i].end) &&
+                            base[i].end < base[i].start
+                        )
+                            base[i].end = base[i].start;
+                    }
+                    return base;
+                }
+
+                /* ========= Marker UI ========= */
+                function renderMarkers(list) {
+                    markersEl.innerHTML = "";
+                    list.forEach((m, idx) => {
+                        const node = markerTpl.content.cloneNode(true);
+                        const btn = node.querySelector('[data-action="jump"]');
+                        btn.dataset.start = m.start;
+                        btn.dataset.end = m.end;
+                        btn.querySelector(".label").textContent =
+                            m.label || `Marker ${idx + 1}`;
+                        btn.querySelector(".time").textContent = formatTime(
+                            m.start,
+                        );
+                        markersEl.appendChild(node);
+                    });
+                    updateMarkerFills();
+                    markActiveChapter();
+                }
+                function chapterIndexAtTime(t) {
+                    for (let i = 0; i < chapters.length; i++) {
+                        const c = chapters[i];
+                        const end = Number.isFinite(c.end)
+                            ? c.end
+                            : video.duration || c.start;
+                        if (t >= c.start && t < end) return i;
+                    }
+                    if (
+                        chapters.length &&
+                        t >= (chapters.at(-1).start ?? Infinity)
+                    )
+                        return chapters.length - 1;
+                    return -1;
+                }
+                function scrollActiveChapterIntoView() {
+                    const n = nowMs();
+                    if (n - lastScrollTs < AUTO_SCROLL_DEBOUNCE_MS) return;
+                    const btn = markersEl.querySelector(".active");
+                    if (!btn || btn === lastActiveChapterBtn) return;
+                    lastActiveChapterBtn = btn;
+                    btn.scrollIntoView?.({
+                        block: "center",
+                        inline: "nearest",
+                        behavior: "smooth",
+                    });
+                    lastScrollTs = n;
+                }
+                function markActiveChapter(t = video.currentTime || 0) {
+                    let newIndex = -1;
+                    markersEl
+                        .querySelectorAll('[data-action="jump"]')
+                        .forEach((btn, idx) => {
+                            const s = Number(btn.dataset.start) || 0;
+                            const er = Number(btn.dataset.end);
+                            const e = Number.isFinite(er)
+                                ? er
+                                : video.duration || s;
+                            const isActive = t >= s && t < e;
+                            if (isActive) newIndex = idx;
+                            btn.classList.toggle("active", isActive);
+                        });
+                    if (
+                        newIndex !== -1 &&
+                        newIndex !== lastActiveChapterIndex
+                    ) {
+                        const n = nowMs();
+                        if (
+                            newIndex === suppressIndexOnce &&
+                            n < suppressExpiryTs
+                        ) {
+                            lastActiveChapterIndex = newIndex;
+                        } else {
+                            scrollActiveChapterIntoView();
+                            lastActiveChapterIndex = newIndex;
+                            suppressIndexOnce = -1;
+                        }
+                    }
+                }
+                function updateMarkerFills() {
+                    const t = video.currentTime || 0;
+                    markersEl
+                        .querySelectorAll('[data-action="jump"]')
+                        .forEach((btn) => {
+                            const start = Number(btn.dataset.start) || 0;
+                            const endRaw = Number(btn.dataset.end);
+                            const end = Number.isFinite(endRaw)
+                                ? endRaw
+                                : video.duration || start;
+                            const span = Math.max(0.001, end - start);
+                            const frac = clamp((t - start) / span, 0, 1);
+                            btn.style.setProperty("--fill", frac * 100 + "%");
+                        });
+                    markActiveChapter(t);
+                }
+
+                /* ========= Time/Rate UI ========= */
+                function updateTimeUI() {
+                    const cur = video.currentTime || 0;
+                    const dur = video.duration || 0;
+                    timeEl.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+                    updateMarkerFills();
+                }
+                video.addEventListener("timeupdate", updateTimeUI);
+                video.addEventListener("loadedmetadata", updateTimeUI);
+                video.addEventListener(
+                    "ratechange",
+                    () =>
+                        (rateEl.textContent = `${video.playbackRate.toFixed(2)}×`),
+                );
+                video.addEventListener(
+                    "loadedmetadata",
+                    () => {
+                        lastActiveChapterIndex = -1;
+                        markActiveChapter(video.currentTime || 0);
+                    },
+                    { once: true },
+                );
+
+                /* ========= Controls ========= */
+                $("#back10").onclick = () =>
+                    (video.currentTime = Math.max(
+                        0,
+                        (video.currentTime || 0) - 10,
+                    ));
+                $("#forward10").onclick = () =>
+                    (video.currentTime = Math.min(
+                        video.duration || Infinity,
+                        (video.currentTime || 0) + 10,
+                    ));
+                $("#playPause").onclick = () =>
+                    video.paused ? video.play() : video.pause();
+                $("#rateUp").onclick = () =>
+                    (video.playbackRate = Math.min(
+                        MAX_RATE,
+                        (video.playbackRate || 1) + RATE_STEP,
+                    ));
+                $("#rateDown").onclick = () =>
+                    (video.playbackRate = Math.max(
+                        MIN_RATE,
+                        (video.playbackRate || 1) - RATE_STEP,
+                    ));
+                $("#fsBtn")?.addEventListener("click", toggleFullscreen);
+
+                function toggleFullscreen() {
+                    if (!document.fullscreenElement)
+                        video.requestFullscreen?.();
+                    else document.exitFullscreen?.();
+                }
+
+                document.addEventListener("keydown", (e) => {
+                    const tag = e.target.tagName;
+                    if (
+                        tag === "INPUT" ||
+                        tag === "TEXTAREA" ||
+                        e.target.isContentEditable
+                    )
+                        return;
+                    const t = video.currentTime || 0;
+                    switch (e.key.toLowerCase()) {
+                        case " ":
+                            e.preventDefault();
+                            video.paused ? video.play() : video.pause();
+                            break;
+                        case "m":
+                            video.muted = !video.muted;
+                            break;
+                        case "arrowleft":
+                            e.preventDefault();
+                            if (e.shiftKey) {
+                                const prev = chapters
+                                    .slice()
+                                    .reverse()
+                                    .find((c) => c.start < t - 1);
+                                if (prev) video.currentTime = prev.start;
+                            } else video.currentTime = Math.max(0, t - 5);
+                            break;
+                        case "arrowright":
+                            e.preventDefault();
+                            if (e.shiftKey) {
+                                const nxt = chapters.find(
+                                    (c) => c.start > t + 1,
+                                );
+                                if (nxt) video.currentTime = nxt.start;
+                            } else
+                                video.currentTime = Math.min(
+                                    video.duration || Infinity,
+                                    t + 5,
+                                );
+                            break;
+                        case "arrowup":
+                            e.preventDefault();
+                            if (e.shiftKey)
+                                video.playbackRate = Math.min(
+                                    MAX_RATE,
+                                    (video.playbackRate || 1) + RATE_STEP,
+                                );
+                            else
+                                video.volume = Math.min(
+                                    1,
+                                    (video.volume ?? 1) + 0.05,
+                                );
+                            break;
+                        case "arrowdown":
+                            e.preventDefault();
+                            if (e.shiftKey)
+                                video.playbackRate = Math.max(
+                                    MIN_RATE,
+                                    (video.playbackRate || 1) - RATE_STEP,
+                                );
+                            else
+                                video.volume = Math.max(
+                                    0,
+                                    (video.volume ?? 1) - 0.05,
+                                );
+                            break;
+                        case "f":
+                            e.preventDefault();
+                            toggleFullscreen();
+                            break;
+                    }
+                });
+
+                /* ========= Volume persistence (global) ========= */
+                (function restoreGlobalVolume() {
+                    try {
+                        const v = JSON.parse(
+                            localStorage.getItem(VOLUME_KEY) || "{}",
+                        );
+                        if (v.volume != null) video.volume = v.volume;
+                    } catch {}
+                })();
+                function saveGlobalVolume() {
+                    try {
+                        localStorage.setItem(
+                            VOLUME_KEY,
+                            JSON.stringify({ volume: video.volume ?? 1 }),
+                        );
+                    } catch {}
+                }
+                video.addEventListener("volumechange", saveGlobalVolume);
+
+                /* ========= Per-episode time persistence ========= */
+                const storageKey = () => `video_state_${currentId}`;
+                function saveState() {
+                    try {
+                        const dur = video.duration || 0,
+                            t = video.currentTime || 0;
+                        if (dur && t >= dur - 30)
+                            localStorage.removeItem(storageKey());
+                        else
+                            localStorage.setItem(
+                                storageKey(),
+                                JSON.stringify({ time: t }),
+                            );
+                    } catch {}
+                }
+                function restoreState() {
+                    try {
+                        const s = JSON.parse(
+                            localStorage.getItem(storageKey()) || "{}",
+                        );
+                        if (
+                            s.time &&
+                            (!Number.isFinite(video.duration) ||
+                                s.time < video.duration)
+                        ) {
+                            video.currentTime = s.time;
+                        }
+                    } catch {}
+                }
+                video.addEventListener("timeupdate", saveState);
+                video.addEventListener("loadedmetadata", restoreState, {
+                    once: true,
+                });
+
+                /* ========= Titles & Prev/Next ========= */
+                function setPrevNext(prev, next) {
+                    function setBtn(btn, data, dir) {
+                        if (!btn) return;
+                        if (data) {
+                            btn.disabled = false;
+                            const label = cleanTitle(data.title || "");
+                            btn.textContent =
+                                dir === "prev"
+                                    ? `← Previous: ${label}`
+                                    : `Next: ${label} →`;
+                            btn.onclick = () => {
+                                if (currentId !== data.id) {
+                                    setVideoFor(data.id);
+                                    history.replaceState(
+                                        null,
+                                        "",
+                                        hrefFor(data.id),
+                                    );
+                                    markVisited(data.id);
+                                }
+                            };
+                        } else {
+                            btn.disabled = true;
+                            btn.onclick = null;
+                        }
+                    }
+                    setBtn(prevBtn, prev, "prev");
+                    setBtn(nextBtn, next, "next");
+                }
+                function updateHeaderTitle(title) {
+                    const full = title
+                        ? `Day ${pad3(currentId)} - ${title}`
+                        : `Day ${pad3(currentId)}`;
+                    if (pageTitleEl) pageTitleEl.textContent = full;
+                    document.title = `Handmade Hero Day ${pad3(currentId)}${title ? " - " + title : ""}`;
+                }
+
+                /* ========= Messaging: chapters & timestamps ========= */
+                function requestEpisodeMeta() {
+                    chaptersFrame.contentWindow?.postMessage(
+                        { type: "chapter-query", currentId },
+                        "*",
+                    );
+                }
+
+                window.addEventListener("message", (ev) => {
+                    const msg = ev.data;
+                    if (!msg || typeof msg !== "object") return;
+
+                    if (msg.type === "chapter-response") {
+                        setPrevNext(msg.prev, msg.next);
+                        if (
+                            msg.current &&
+                            Number(msg.current.id) === Number(currentId)
+                        ) {
+                            const title = cleanTitle(msg.current.title || "");
+                            updateHeaderTitle(title);
+
+                            const base = buildBaseFilename(currentId, title);
+                            const mp4 = `${base}.mp4`;
+                            videoSource.src = `./video_data/${mp4}`;
+                            video.load();
+
+                            loadTimestampsForBase(base);
+                        }
+                    }
+
+                    if (msg.type === "timestamps-response") {
+                        chapters = coerceChapters(msg.chapters || []);
+                        renderMarkers(chapters);
+                        const last = chapters[chapters.length - 1];
+                        if (last && !Number.isFinite(last.end)) {
+                            const finish = () => {
+                                last.end = video.duration;
+                                renderMarkers(chapters);
+                            };
+                            Number.isFinite(video.duration)
+                                ? finish()
+                                : video.addEventListener(
+                                      "loadedmetadata",
+                                      finish,
+                                      { once: true },
+                                  );
+                        }
+                    }
+                });
+
+                function loadTimestampsForBase(base) {
+                    const candidates = [
+                        `./timestamps_data/${base}.html`,
+                        `./timestamps_data/${base}.htm`,
+                    ];
+                    let responded = false;
+                    let idx = 0;
+
+                    function query() {
+                        timestampsFrame.contentWindow?.postMessage(
+                            { type: "timestamps-query" },
+                            "*",
+                        );
+                    }
+                    function showMissing() {
+                        let box = document.getElementById("missing-timestamps");
+                        if (!box) {
+                            box = document.createElement("div");
+                            box.id = "missing-timestamps";
+                            box.className = "card panel";
+                            document.querySelector(".right-col")?.prepend(box);
+                        }
+                        box.innerHTML = `
+              <h3>Timestamps not found</h3>
+              <p>Place one of the following files into <code>./timestamps_data/</code>:</p>
+              <ul style="margin:0;padding-left:18px">
+                <li><code>${base}.html</code></li>
+                <li><code>${base}.htm</code></li>
+              </ul>
+              <p>The file should reply to a <code>timestamps-query</code> postMessage.</p>
+            `;
+                    }
+
+                    function tryNext() {
+                        if (idx >= candidates.length) {
+                            if (!responded) showMissing();
+                            return;
+                        }
+                        const src = candidates[idx++];
+                        timestampsFrame.src = src;
+                        const timeout = setTimeout(() => {
+                            if (!responded) tryNext();
+                        }, 1500);
+                        const onLoad = () => {
+                            query();
+                            timestampsFrame.removeEventListener("load", onLoad);
+                        };
+                        timestampsFrame.addEventListener("load", onLoad);
+
+                        function onMessage(ev) {
+                            const msg = ev.data;
+                            if (!msg || typeof msg !== "object") return;
+                            if (msg.type !== "timestamps-response") return;
+                            responded = true;
+                            clearTimeout(timeout);
+                            window.removeEventListener("message", onMessage);
+                            chapters = coerceChapters(msg.chapters || []);
+                            renderMarkers(chapters);
+                            const last = chapters[chapters.length - 1];
+                            if (last && !Number.isFinite(last.end)) {
+                                const setEnd = () => {
+                                    last.end = video.duration;
+                                    renderMarkers(chapters);
+                                };
+                                Number.isFinite(video.duration)
+                                    ? setEnd()
+                                    : video.addEventListener(
+                                          "loadedmetadata",
+                                          setEnd,
+                                          { once: true },
+                                      );
+                            }
+                        }
+                        window.addEventListener("message", onMessage);
+                    }
+                    tryNext();
+                }
+
+                function setVideoFor(id) {
+                    currentId = id;
+                    videoSource.removeAttribute("src");
+                    video.load();
+                    requestEpisodeMeta();
+                    updateHeaderTitle(null);
+                    markVisited(id);
+                }
+
+                // Initial load & URL changes
+                setVideoFor(currentId);
+                window.addEventListener("hashchange", () => {
+                    const n = fromHash();
+                    if (!n || n === currentId) return;
+                    setVideoFor(n);
+                });
+                chaptersFrame.addEventListener("load", requestEpisodeMeta);
+
+                // Home button
+                $("#homeBtn").addEventListener("click", () => {
+                    window.location.href = "index.html";
+                });
+
+                // Credits modal wiring
+                const creditsBtn = $("#creditsBtn");
+                const creditsDialog = $("#creditsDialog");
+                const closeCredits = $("#closeCredits");
+                creditsBtn?.addEventListener("click", () =>
+                    creditsDialog?.showModal(),
+                );
+                closeCredits?.addEventListener("click", () =>
+                    creditsDialog?.close(),
+                );
+                creditsDialog?.addEventListener("click", (e) => {
+                    const rect = creditsDialog.getBoundingClientRect();
+                    const inside =
+                        e.clientX >= rect.left &&
+                        e.clientX <= rect.right &&
+                        e.clientY >= rect.top &&
+                        e.clientY <= rect.bottom;
+                    if (!inside) creditsDialog.close();
+                });
+
+                // Marker click (event delegation) — supports scrubbing within active marker
+                markersEl.addEventListener("click", (e) => {
+                    const btn = e.target.closest('[data-action="jump"]');
+                    if (!btn) return;
+                    const start = Number(btn.dataset.start) || 0;
+                    const endRaw = Number(btn.dataset.end);
+                    const end = Number.isFinite(endRaw)
+                        ? endRaw
+                        : video.duration || start;
+                    const current = video.currentTime || 0;
+                    const isCurrent = current >= start && current < end;
+
+                    let target = start;
+                    if (isCurrent) {
+                        const rect = btn.getBoundingClientRect();
+                        const x = clamp(e.clientX - rect.left, 0, rect.width);
+                        const frac = rect.width ? x / rect.width : 0;
+                        const span = Math.max(0, end - start);
+                        target = span > 0 ? start + frac * span : start;
+                    }
+                    const targetIndex = chapterIndexAtTime(target);
+                    suppressIndexOnce = targetIndex;
+                    suppressExpiryTs = nowMs() + 800;
+                    video.currentTime = Math.min(
+                        video.duration || target,
+                        target,
+                    );
+                    video.play();
+                });
+            })();
+        </script>
+    </body>
+</html>
